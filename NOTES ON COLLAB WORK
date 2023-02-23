@@ -1,0 +1,32 @@
+Leader
+-Set up repository
+-Send invites to collaborators
+
+Collaborators
+-Accepts invites
+-Click 'Fork' on upper right of page and save it as their own 'copy' of repository
+  -Allows Collaborator to edit and commit to their own forks.
+  -Once satisfied with what was changed, send a pull request to Leader
+
+Leader
+-Reviews and signs off for pull request to upstream...
+
+How to check in?:
+ 1) git status
+      -Review and check what was changed in project/fork
+ 2) git add .
+ 3) git commit -m "Detailed message of what was done"
+ 4) git push
+ 5) git status 
+      -Review and check
+
+
+----------------------------------------------------------------------------------------------
+Random notes: 
+
+Creating new branches: 
+git checkout -b <nameOfBranch>
+
+Switching branches
+git checkout <nameOfBranch>
+
