@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 module.exports = {
     findAllUsers: (req, res) => {
         User.find()
@@ -20,7 +20,7 @@ module.exports = {
             .catch((err) =>
                 res.status(400).json({
                     message:
-                        "Something went wrong while trying to find details of a user ", 
+                        "Something went wrong while trying to find details of a user ",
                     error: err,
                 })
             );
@@ -54,7 +54,9 @@ module.exports = {
                 res.cookie("userToken", token, {
                     expires: new Date(Date.now() + 900000),
                 }).json({ successMessage: "userToken: ", user: payload });
-                console.log(`Thanks for registering, ${user.firstName}.  Here's your userToken: ${token}.`);
+                console.log(
+                    `Thanks for registering, ${user.firstName}.  Here's your userToken: ${token}.`
+                );
             }
         } catch (err) {
             res.status(400).json(err);
@@ -89,8 +91,11 @@ module.exports = {
                     );
                     res.cookie("userToken", token, {
                         expires: new Date(Date.now() + 900000),
-                    // }).json({ successMessage: "userToken: ", user: payload });
-                    }).json({ successMessage:`userToken is ${token}`, user: payload });
+                        // }).json({ successMessage: "userToken: ", user: payload });
+                    }).json({
+                        successMessage: `userToken is ${token}`,
+                        user: payload,
+                    });
                 }
             }
         } catch (err) {
@@ -99,10 +104,9 @@ module.exports = {
             });
         }
     },
-    logout: async (req, res) => {
-        console.log("logging out");
-        res.clearCookie("userToken");
-        res.json({ successMessage: "User logged out" });
+    logout: (req, res) => {
+        console.log(`Logging out!`);
+        res.clearCookie("userToken").json({ successMessage: "User logged out" });
     },
 
     update: (req, res) => {
