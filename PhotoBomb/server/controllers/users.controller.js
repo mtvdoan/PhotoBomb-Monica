@@ -109,7 +109,7 @@ module.exports = {
         res.clearCookie("userToken").json({ successMessage: "User logged out" });
     },
 
-    update: (req, res) => {
+    updateUser: (req, res) => {
         User.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true,
