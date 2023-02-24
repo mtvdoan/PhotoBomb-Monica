@@ -30,3 +30,5 @@ git checkout -b <nameOfBranch>
 Switching branches
 git checkout <nameOfBranch>
 
+Ready to check in?
+send pull request
