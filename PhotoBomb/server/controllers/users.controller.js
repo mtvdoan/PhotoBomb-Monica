@@ -20,7 +20,7 @@ module.exports = {
             .catch((err) =>
                 res.status(400).json({
                     message:
-                        "Something went wrong while trying to find details of a user",
+                        "Something went wrong while trying to find details of a user TEST", 
                     error: err,
                 })
             );
