@@ -1,24 +1,35 @@
-//Dependencies
-const express = require("express"); 
+// read enviroment variables
+require('dotenv').config()
+
+// express: js framework - interface to Node Server
+const express = require('express');
 const app = express();
+
+// cors cross-origin requests
 const cors = require('cors')
-const cookieParser = require('cookie-parser');
-const dotenv = require('dotenv');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const port = 8000;
 
-//Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-    origin:"http://localhost:3000"
-}));
-
-//Requires
-require("./config/mongoose.config");
-require("./routes/SOMETHING.routes")(app);  //Need to edit 'SOMETHING' with real name. lol
+// middleware for cookies
+const cookieParser = require('cookie-parser')
+const PORT = 8000;
 
 
-//Listen Method
-app.listen(port, ()=>console.log("Listening on port:", port))             
+app.use( express.json() )
+app.use( express.urlencoded({extended:true}) )
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cookieParser())
+
+
+// connect to mongooese and routes
+require('./config/mongoose.config')
+require('./routes/users.routes')(app)
+// require('./routes/objs.routes')(app)
+
+
+
+
+// app listen to port
+app.listen(PORT, () => console.log(`Party on port: ${PORT}`) );
+
+
+// LOGIN REG INSTALL
+// npm i bcrypt dotenv cookie-parser jsonwebtoken
