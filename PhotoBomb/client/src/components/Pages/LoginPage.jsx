@@ -1,29 +1,35 @@
 import React, { useState, useContext } from "react";
-// import UserContext from '../../context/UserContext';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-const LoginPage = (props) => {
+const LoginPage = ({setUser}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
-    // const {UserContext} = useContext(UserContext);
     const handleSubmit = (e) => {
         e.preventDefault();
         axios
             .post(
                 "http://localhost:8000/api/users/login",
-                { email, password },
+                {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                },
                 { withCredentials: true }
             )
             .then((res) => {
+                setUser(res.data.user);
                 console.log("user", res.data.user);
-
-                alert("Yay, you have successfully logged in!");
+                console.log("user", res);
+                alert(`Yay, ${res.data.user.firstName} has successfully logged in!`);
                 navigate("/TestConfirmPage");
             })
             .catch((err) => {
@@ -31,6 +37,7 @@ const LoginPage = (props) => {
                 setErrors(err.response.data.errors);
             });
     };
+
     return (
         <>
             <div>

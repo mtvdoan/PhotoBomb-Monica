@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import UserContext from '../../context/UserContext';
+import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Boop from "../../styles/Boop";
@@ -7,42 +7,28 @@ import { animated } from "react-spring";
 import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-const AllUsersPage = (props) => {
+const AllUsersPage = ({ user }) => {
     const [usersList, setUsersList] = useState([]);
-    const [user, setUser] = useState("");
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
-    // const {UserContext} = useContext(UserContext);
+    const [authorized, setAuthorized] = useState("");
+    console.log("authorized", authorized);
+
     useEffect(() => {
         axios
             .get("http://localhost:8000/api/users/")
             .then((res) => {
+                console.log("RES!", res.data);
+                console.log(user);
                 setUsersList(res.data);
-                
-                console.log("All users:", res.data);
-   
+                console.log();
             })
             .catch((err) => {
                 console.log(err);
                 setErrors(err.response.data.errors);
             });
-    },[]);
-    
-    const userFirstName= user["firstName"]
-
-    //     useEffect(() => {
-    //     axios
-    //         .get("http://localhost:8000/api/users/")
-    //         .then((res) => {
-    //             // console.log("res", res.data);
-    //             // setUsersList(res.data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             setErrors(err.response.data.errors);
-    //         });
-    // });
-
+    }, []);
+    console.log("list", usersList);
 
     return (
         <>
@@ -66,15 +52,26 @@ const AllUsersPage = (props) => {
                         </Boop>
                         <div className="flex md:order-2">
                             <Boop rotation={"5"} timing={"200"}>
-                                <LogoutButton />
+                                <div className="flex bg-teal-400 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
+                                    <div className="mr-2 text-white text-lg">
+                                        Logged in as:
+                                    </div>
+                                    <div>{user["firstName"]}</div>
+                                </div>
                             </Boop>
                         </div>
-                              <div className="flex md:order-2">
+                                          <div className="flex md:order-2">
                             <Boop rotation={"5"} timing={"200"}>
-                                 <span className="self-center tracking-tighter font-extrabold text-sm font-semibold whitespace-nowrap dark:text-white">
-                                {["firstName"]} is logged in
-                                {user["firstName"]}
-                            </span>
+                                <div className="flex bg-orange-400 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
+                                    <div className="mr-2 text-white text-lg">
+                                        Edit Your Profile
+                                    </div>
+                                </div>
+                            </Boop>
+                        </div>
+                        <div className="flex md:order-2">
+                            <Boop rotation={"5"} timing={"200"}>
+                                <LogoutButton />
                             </Boop>
                         </div>
                         <div
@@ -96,7 +93,7 @@ const AllUsersPage = (props) => {
                                         href="_#"
                                         class="block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
-                                        About
+                                        {/* About */}
                                     </a>
                                 </li>
                                 <li>
@@ -104,7 +101,7 @@ const AllUsersPage = (props) => {
                                         href="_#"
                                         class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
-                                        Services
+                                        {/* Services */}
                                     </a>
                                 </li>
                                 <li>
@@ -112,7 +109,7 @@ const AllUsersPage = (props) => {
                                         href="_#"
                                         class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
-                                        Contact
+                                        Creators
                                     </a>
                                 </li>
                             </ul>
@@ -120,7 +117,6 @@ const AllUsersPage = (props) => {
                     </div>
                 </nav>
                 <div>
-                    {/* Login */}
                     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
                         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -134,16 +130,37 @@ const AllUsersPage = (props) => {
                                             {usersList.length > 0 &&
                                                 usersList.map((user, index) => (
                                                     <>
-                                                    <div className="grid grid-flow-col m-4 text-center inline-flex whitespace-nowrap">
-                                                        <img
-                                                            src={bomb}
-                                                            alt="bomb"
-                                                            className="h-5 w-5"
-                                                        />
-                                                        <div key={user.id}>
-                                                            <p>{user.email}</p>
-                                                        </div>
-                                                    </div>
+                                                        <Boop
+                                                            rotation={"5"}
+                                                            timing={"200"}
+                                                        >
+                                                            <div className="w-56 grid grid-flow-col m-2 text-center inline-flex whitespace-nowrap">
+                                                                <img
+                                                                    src={bomb}
+                                                                    alt="bomb"
+                                                                    className="h-5 w-5"
+                                                                />
+                                                                <div
+                                                                    key={
+                                                                        user.id
+                                                                    }
+                                                                >
+                                                                    <button>
+                                                                        <Link
+                                                                            to={
+                                                                                "/user/" +
+                                                                                user._id
+                                                                            }
+                                                                            className="text-blue-700 underline cursor-pointer"
+                                                                        >
+                                                                            {
+                                                                                user.email
+                                                                            }
+                                                                        </Link>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </Boop>
                                                     </>
                                                 ))}
                                             <ul className="mb-8 space-y-4 text-left text-gray-500 dark:text-gray-400"></ul>

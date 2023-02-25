@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 const LogoutButton = (props) => {
     const navigate = useNavigate();
     const [loggedIn, setLoggedIn] = useState(false);
-
+    const [user, setUser] = useState("");
+    // const {user, setUser} = useContext();
+    console.log(user);
     const handleLogOut = (e) => {
         e.preventDefault();
         axios

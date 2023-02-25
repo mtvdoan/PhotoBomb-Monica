@@ -81,21 +81,18 @@ module.exports = {
                     const payload = {
                         _id: user._id,
                         email: user.email,
-                        first: user.first,
-                        last: user.last,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
                     };
                     // create a token
                     const token = jwt.sign(
                         { id: user._id },
                         process.env.SECRET_KEY
                     );
-                    res.cookie("userToken", token, {
-                        expires: new Date(Date.now() + 900000),
-                        // }).json({ successMessage: "userToken: ", user: payload });
-                    }).json({
-                        successMessage: `userToken is ${token}`,
-                        user: payload,
-                    });
+                    res
+                        .cookie("userToken", token, {expires: new Date(Date.now() + 900000)})
+                        .json({successMessage: `userToken is ${token}`, user: payload});
+                        console.log(payload);
                 }
             }
         } catch (err) {
@@ -107,6 +104,7 @@ module.exports = {
     logout: (req, res) => {
         console.log(`Logging out!`);
         res.clearCookie("userToken").json({ successMessage: "User logged out" });
+        console.log(res);
     },
 
     updateUser: (req, res) => {
@@ -122,6 +120,17 @@ module.exports = {
                 })
             );
     },
+
+    getLogged: async (req, res) => {
+    try {
+        const user = jwt.verify(req.cookies.userToken, process.env.SECRET_KEY);
+        const currentUser = await User.findOne({ email: user.email });
+        res.json(`${currentUser} is logged in`);
+        console.log(currentUser);
+    } catch (error) {
+        res.status(400).json({ errors: 'failed to get logged in user' })
+    }
+},
 
     deleteUser: (req, res) => {
         User.findByIdAndDelete(req.params.id)

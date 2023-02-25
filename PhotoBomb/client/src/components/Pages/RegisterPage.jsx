@@ -6,7 +6,7 @@ import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-const RegisterPage = ({ setUser }) => {
+const RegisterPage = (props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -36,10 +36,10 @@ const RegisterPage = ({ setUser }) => {
                 { withCredentials: true }
             )
             .then((res) => {
-                console.log("registered user" + res.data.user);
+                console.log("registered user", res.data.user);
                 alert("Thanks for registering. Please log in to get started!");
                 navigate("/login");
-                setUser(res.data.user);
+
             })
             .catch((res) => {
                 setErrors(res.response.data.errors);
