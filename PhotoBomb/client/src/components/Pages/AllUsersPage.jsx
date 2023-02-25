@@ -9,6 +9,7 @@ import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import EditUserButton from "../Buttons/EditUserButton";
+import SearchBar from "../Buttons/SearchBar";
 const AllUsersPage = ({ user }) => {
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
@@ -36,7 +37,7 @@ const AllUsersPage = ({ user }) => {
         <>
             <div>
                 <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class="container flex flex-wrap items-center justify-center mx-auto">
+                    <div class="container flex items-center justify-center mx-auto">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -85,6 +86,7 @@ const AllUsersPage = ({ user }) => {
                                 </li>
                             </ul>
                             <div className="flex">
+                                <SearchBar/>
                                 <LoggedInAsButton user={user} />
                                 <EditUserButton user={user}/>
                             </div>

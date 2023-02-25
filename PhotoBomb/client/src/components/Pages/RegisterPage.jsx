@@ -6,6 +6,7 @@ import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
+import SearchBar from "../Buttons/SearchBar";
 const RegisterPage = (props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -50,7 +51,7 @@ const RegisterPage = (props) => {
         <>
             <div>
                 <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div className="container flex flex-wrap items-center justify-center mx-auto">
+                    <div className="container flex items-center justify-center mx-auto">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -66,17 +67,7 @@ const RegisterPage = (props) => {
                                 PhotoBomb!
                             </span>
                         </Boop>
-                        <div className="flex md:order-2">
-                            <Boop rotation={"5"} timing={"200"}>
-                                <Link
-                                    type="button"
-                                    to={"/Login"}
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Already got an account? Login Here
-                                </Link>
-                            </Boop>
-                        </div>
+         
                         <div
                             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                             id="navbar-sticky"
@@ -113,9 +104,25 @@ const RegisterPage = (props) => {
                                         className="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         Creators
+                                        
                                     </a>
                                 </li>
+                                <li>
+
+                                </li>
                             </ul>
+                                           <div className="flex md:order-2 w-auto whitespace-nowrap">
+                            <Boop rotation={"5"} timing={"200"}>
+                                <Link
+                                    type="button"
+                                    to={"/Login"}
+                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                >
+                                    Already got an account? Login Here
+                                </Link>
+                            </Boop>
+                        </div>
+                                                       <SearchBar/>
                         </div>
                     </div>
                 </nav>

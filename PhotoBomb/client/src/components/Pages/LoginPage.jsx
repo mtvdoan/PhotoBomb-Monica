@@ -5,6 +5,7 @@ import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
+import SearchBar from "../Buttons/SearchBar";
 const LoginPage = ({setUser}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -42,7 +43,7 @@ const LoginPage = ({setUser}) => {
         <>
             <div>
                 <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class="container flex flex-wrap items-center justify-center mx-auto">
+                    <div class="container flex items-center justify-center mx-auto">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -63,7 +64,7 @@ const LoginPage = ({setUser}) => {
                                 <Link
                                     to={"/register"}
                                     type="button"
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-5xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    className="text-white whitespace-nowrap bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 >
                                     Register Here
                                 </Link>
@@ -108,6 +109,7 @@ const LoginPage = ({setUser}) => {
                                     </a>
                                 </li>
                             </ul>
+                        <SearchBar/>
                         </div>
                     </div>
                 </nav>
