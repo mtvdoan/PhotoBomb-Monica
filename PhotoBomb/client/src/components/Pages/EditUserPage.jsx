@@ -8,6 +8,7 @@ import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
+import DeleteUserButton from "../Buttons/DeleteUserButton";
 
 const EditUser = ({ user }) => {
     const { id } = useParams();
@@ -254,24 +255,29 @@ const EditUser = ({ user }) => {
                                                     Confirm Password
                                                 </label>
                                             </div>
-                                            <div className="relative">
-                                                <Boop
-                                                    rotation={"5"}
-                                                    timing={"200"}
-                                                >
-                                                    <Link
-                                                        onClick={handleSubmit}
-                                                        to={"/login"}
-                                                        type="submit"
-                                                        className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
+                                            <div className="relative grid grid-cols-2 content-center">
+                                                <div className="">
+                                                    <Boop
+                                                        rotation={"5"}
+                                                        timing={"200"}
                                                     >
-                                                        Submit
-                                                    </Link>
-                                                </Boop>
+                                                        <Link
+                                                            onClick={
+                                                                handleSubmit
+                                                            }
+                                                            to={"/login"}
+                                                            type="submit"
+                                                            className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-2"
+                                                        >
+                                                            Submit
+                                                        </Link>
+                                                    </Boop>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <DeleteUserButton user={user} />
                             </div>
                         </div>
                     </div>

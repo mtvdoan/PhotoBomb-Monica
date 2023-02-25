@@ -12,6 +12,7 @@ import { UserProvider } from "./context/UserContext";
 import LoggedInAsButton from "./components/Buttons/LoggedInAsButton";
 import EditUserPage from "./components/Pages/EditUserPage";
 import EditUserButton from "./components/Buttons/EditUserButton";
+import DeleteUserButton from "./components/Buttons/DeleteUserButton";
 function App() {
     const [authorized, setAuthorized] = useState("");
     // 1 ) CREATE A STATE TO SAVE THE USER
@@ -62,6 +63,12 @@ function App() {
                         <Route
                             path="/LoggedInAsButton"
                             element={<LoggedInAsButton user={user} />}
+                            authorized={authorized}
+                            setAuthorized={setAuthorized}
+                        />
+                                          <Route
+                            path="/DeleteUserButton"
+                            element={<DeleteUserButton user={user} />}
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />

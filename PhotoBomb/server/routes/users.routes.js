@@ -7,7 +7,7 @@ module.exports = app  => {
     app.get('/api/users/:id', UserController.findOneUser)
     app.get('/api/users/', UserController.findAllUsers)
     app.put('/api/users/update/:id', UserController.updateUser)
-    app.delete('/api/users/:id', UserController.deleteUser)
+    app.delete('/api/users/delete/:id', UserController.deleteUser)
     app.get('/api/users/user-current', UserController.getLogged)
     // app.get('/api/users/test', UserController.index)
 }
