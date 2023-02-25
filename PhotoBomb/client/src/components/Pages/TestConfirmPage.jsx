@@ -5,7 +5,7 @@ const TestConfirmPage = ({ user }) => {
     return (
         <>
             <div>
-                <div className="text-xl text-center font-extrabold mt-96">
+                <div className="text-xl text-center font-extrabold mt-96 grid grid-rows-5 content-center flex justify-center">
                     <h2>Just a place to test user login/reg/logout...</h2>
                     <h4 className="">
                         If you have reached here, you have successfully logged

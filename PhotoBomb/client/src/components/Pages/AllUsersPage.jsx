@@ -7,6 +7,8 @@ import { animated } from "react-spring";
 import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
+import LoggedInAsButton from "../Buttons/LoggedInAsButton";
+import EditUserButton from "../Buttons/EditUserButton";
 const AllUsersPage = ({ user }) => {
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
@@ -50,30 +52,7 @@ const AllUsersPage = ({ user }) => {
                                 PhotoBomb!
                             </span>
                         </Boop>
-                        <div className="flex md:order-2">
-                            <Boop rotation={"5"} timing={"200"}>
-                                <div className="flex bg-teal-400 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
-                                    <div className="mr-2 text-white text-lg">
-                                        Logged in as:
-                                    </div>
-                                    <div>{user["firstName"]}</div>
-                                </div>
-                            </Boop>
-                        </div>
-                                          <div className="flex md:order-2">
-                            <Boop rotation={"5"} timing={"200"}>
-                                <div className="flex bg-orange-400 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
-                                    <div className="mr-2 text-white text-lg">
-                                        Edit Your Profile
-                                    </div>
-                                </div>
-                            </Boop>
-                        </div>
-                        <div className="flex md:order-2">
-                            <Boop rotation={"5"} timing={"200"}>
-                                <LogoutButton />
-                            </Boop>
-                        </div>
+
                         <div
                             class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                             id="navbar-sticky"
@@ -101,18 +80,15 @@ const AllUsersPage = ({ user }) => {
                                         href="_#"
                                         class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
-                                        {/* Services */}
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="_#"
-                                        class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                    >
                                         Creators
                                     </a>
                                 </li>
                             </ul>
+                            <div className="flex">
+                                <LoggedInAsButton user={user} />
+                                <EditUserButton user={user}/>
+                            </div>
+                                <LogoutButton />
                         </div>
                     </div>
                 </nav>

@@ -5,8 +5,10 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import LogoutButton from "../Buttons/LogoutButton";
+import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
+import EditUserButton from "../Buttons/EditUserButton";
 
 const ViewUserPage = ({ user }) => {
     const { id } = useParams();
@@ -44,30 +46,7 @@ const ViewUserPage = ({ user }) => {
                                     PhotoBomb!
                                 </span>
                             </Boop>
-                            <div className="flex md:order-2">
-                                <Boop rotation={"5"} timing={"200"}>
-                                    <div className="flex bg-teal-400 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
-                                        <div className="mr-2 text-white text-lg">
-                                            Logged in as:
-                                        </div>
-                                        <div>{user["firstName"]}</div>
-                                    </div>
-                                </Boop>
-                            </div>
-                            <div className="flex md:order-2">
-                                <Boop rotation={"5"} timing={"200"}>
-                                    <div className="flex bg-orange-500 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
-                                        <div className="cursor-pointer mr-2 text-white text-lg shadow-lg">
-                                            <Link to={"/users"}>Go Back</Link>
-                                        </div>
-                                    </div>
-                                </Boop>
-                            </div>
-                            <div className="flex md:order-2 ml shadow-lg">
-                                <Boop rotation={"5"} timing={"200"}>
-                                    <LogoutButton />
-                                </Boop>
-                            </div>
+
                             <div
                                 class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                                 id="navbar-sticky"
@@ -107,6 +86,22 @@ const ViewUserPage = ({ user }) => {
                                         </a>
                                     </li>
                                 </ul>
+                                <div>
+                                    <span className="flex">
+                                        <LoggedInAsButton user={user} />
+                                        <EditUserButton user={user}/>
+                                        <Boop rotation={"5"} timing={"200"}>
+                                            <div className="flex bg-blue-500 hover:bg-blue-600 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
+                                                <div className="cursor-pointer mr-2 text-white text-lg shadow-lg">
+                                                    <Link to={"/users"}>
+                                                        Go Back
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </Boop>
+                                    </span>
+                                </div>
+                                <LogoutButton />
                             </div>
                         </div>
                     </nav>
