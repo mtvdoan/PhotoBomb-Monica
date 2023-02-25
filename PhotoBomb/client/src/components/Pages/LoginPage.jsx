@@ -1,7 +1,7 @@
-import React, { useState, useContext} from "react";
-// import UserContext from '../../context/UserContext';  
+import React, { useState, useContext } from "react";
+// import UserContext from '../../context/UserContext';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
@@ -53,12 +53,13 @@ const LoginPage = (props) => {
                         </Boop>
                         <div className="flex md:order-2">
                             <Boop rotation={"5"} timing={"200"}>
-                                <button
+                                <Link
+                                    to={"/register"}
                                     type="button"
                                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-5xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 >
                                     Register Here
-                                </button>
+                                </Link>
                             </Boop>
                         </div>
                         <div
@@ -191,19 +192,6 @@ const LoginPage = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="m-auto text-center mt-96">
-                    <Boop rotation={"5"} timing={"200"}>
-                        <h1 className="tracking-tighter text-5xl m-4 text-blue-900">
-                            LOGIN
-                        </h1>
-                    </Boop>
-                    <Boop rotation={"2"} timing={"200"}>
-                        <mark className="text-5xl tracking-widest font-extrabold bg-blue-900 text-white rounded-lg p-2">
-                            PAGE
-                        </mark>
-                    </Boop>
-                </div>
-                <div></div>
             </div>
         </>
     );

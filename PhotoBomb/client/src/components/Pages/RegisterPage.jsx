@@ -1,41 +1,56 @@
-import React, { useState, useContext} from "react";
-// import UserContext from '../../context/UserContext';  
+import React, { useState, useContext } from "react";
+// import UserContext from '../../context/UserContext';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-const RegisterPage = (props) => {
+const RegisterPage = ({ setUser }) => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [createdAt] = useState(Date());
+    const [updatedAt] = useState(Date());
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
+
     // const {UserContext} = useContext(UserContext);
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("register form");
         axios
             .post(
-                "http://localhost:8000/api/users/login",
-                { email, password },
+                "http://localhost:8000/api/users/register",
+                {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    confirmPassword,
+                    createdAt,
+                    updatedAt,
+                },
                 { withCredentials: true }
             )
             .then((res) => {
-                console.log("user", res.data.user);
-
-                alert("Yay, you have successfully logged in!");
-                navigate("/TestConfirmPage");
+                console.log("registered user" + res.data.user);
+                alert("Thanks for registering. Please log in to get started!");
+                navigate("/login");
+                setUser(res.data.user);
             })
-            .catch((err) => {
-                console.log(err);
-                setErrors(err.response.data.errors);
-            });
+            .catch((res) => {
+                setErrors(res.response.data.errors);
+                console.log(res.response.data.errors);
+            })
     };
     return (
         <>
             <div>
-                <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class="container flex flex-wrap items-center justify-center mx-auto">
+                <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+                    <div className="container flex flex-wrap items-center justify-center mx-auto">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -53,19 +68,20 @@ const RegisterPage = (props) => {
                         </Boop>
                         <div className="flex md:order-2">
                             <Boop rotation={"5"} timing={"200"}>
-                                <button
+                                <Link
                                     type="button"
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-5xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    to={"/Login"}
+                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                 >
-                                    Register Here
-                                </button>
+                                    Already got an account? Login Here
+                                </Link>
                             </Boop>
                         </div>
                         <div
-                            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                             id="navbar-sticky"
                         >
-                            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                                 <li>
                                     <a
                                         href="_#"
@@ -78,7 +94,7 @@ const RegisterPage = (props) => {
                                 <li>
                                     <a
                                         href="_#"
-                                        class="block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                        className="block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         About
                                     </a>
@@ -86,7 +102,7 @@ const RegisterPage = (props) => {
                                 <li>
                                     <a
                                         href="_#"
-                                        class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                        className="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         Services
                                     </a>
@@ -94,7 +110,7 @@ const RegisterPage = (props) => {
                                 <li>
                                     <a
                                         href="_#"
-                                        class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                        className="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         Contact
                                     </a>
@@ -111,23 +127,88 @@ const RegisterPage = (props) => {
                             <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                                 <div className="max-w-md mx-auto">
                                     <div>
-                                        <h1 className="text-4xl font-extrabold">
+                                        <h1 className="mb-5 text-4xl font-extrabold">
                                             Register
                                         </h1>
                                     </div>
                                     <form onSubmit={handleSubmit}>
-                                        <p className="animate-bounce text-red-600">
-                                            {errors && (
-                                                <span className="accent">
-                                                    {errors} 📸
-                                                </span>
+                                        <div className="animate-bounce text-red-600">
+                                            {errors.firstName && (
+                                                <p className="accent">
+                                                    {errors.firstName.message}
+                                                </p>
                                             )}
-                                        </p>
+
+                                            {errors.lastName && (
+                                                <p className="accent">
+                                                    {errors.lastName.message}
+                                                </p>
+                                            )}
+
+                                            {errors.email && (
+                                                <p className="accent">
+                                                    {errors.email.message}
+                                                </p>
+                                            )}
+
+                                            {errors.password && (
+                                                <p className="accent">
+                                                    {errors.password.message}
+                                                </p>
+                                            )}
+                                            {errors.confirmPassword && (
+                                                <p className="accent">
+                                                    {errors.confirmPassword.message}
+                                                </p>
+                                            )}
+                                        </div>
                                         <div className="divide-y divide-gray-200">
                                             <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                                                 <div className="relative">
                                                     <input
-                                                        autocomplete="off"
+                                                        autoComplete="off"
+                                                        id="firstName"
+                                                        name="firstName"
+                                                        type="text"
+                                                        onChange={(e) =>
+                                                            setFirstName(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder="First Name"
+                                                    />
+                                                    <label
+                                                        htmlFor="firstName"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-4 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                    >
+                                                        First Name
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        autoComplete="off"
+                                                        id="lastName"
+                                                        name="lastName"
+                                                        type="text"
+                                                        onChange={(e) =>
+                                                            setLastName(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder="lastName"
+                                                    />
+                                                    <label
+                                                        htmlFor="lastName"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-4 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                    >
+                                                        Last Name
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        autoComplete="off"
                                                         id="email"
                                                         name="email"
                                                         type="text"
@@ -140,7 +221,7 @@ const RegisterPage = (props) => {
                                                         placeholder="Email address"
                                                     />
                                                     <label
-                                                        for="email"
+                                                        htmlFor="email"
                                                         className="absolute left-4 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-4 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
                                                     >
                                                         Email Address
@@ -148,7 +229,7 @@ const RegisterPage = (props) => {
                                                 </div>
                                                 <div className="relative">
                                                     <input
-                                                        autocomplete="off"
+                                                        autoComplete="off"
                                                         id="password"
                                                         name="password"
                                                         type="password"
@@ -161,10 +242,31 @@ const RegisterPage = (props) => {
                                                         placeholder="Password"
                                                     />
                                                     <label
-                                                        for="password"
+                                                        htmlFor="password"
                                                         className="absolute left-4 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-4 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
                                                     >
                                                         Password
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        autoComplete="off"
+                                                        id="confirmPassword"
+                                                        name="confirmPassword"
+                                                        type="password"
+                                                        onChange={(e) =>
+                                                            setConfirmPassword(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder="First Name"
+                                                    />
+                                                    <label
+                                                        htmlFor="confirmPassword"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-4 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                    >
+                                                        Confirm Password
                                                     </label>
                                                 </div>
                                                 <div className="relative">
@@ -172,15 +274,16 @@ const RegisterPage = (props) => {
                                                         rotation={"5"}
                                                         timing={"200"}
                                                     >
-                                                        <button
+                                                        <Link
                                                             onClick={
                                                                 handleSubmit
                                                             }
+                                                            to={"/login"}
                                                             type="submit"
                                                             className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
                                                         >
                                                             Submit
-                                                        </button>
+                                                        </Link>
                                                     </Boop>
                                                 </div>
                                             </div>
@@ -191,19 +294,6 @@ const RegisterPage = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="m-auto text-center mt-96">
-                    <Boop rotation={"5"} timing={"200"}>
-                        <h1 className="tracking-tighter text-5xl m-4 text-blue-900">
-                            LOGIN
-                        </h1>
-                    </Boop>
-                    <Boop rotation={"2"} timing={"200"}>
-                        <mark className="text-5xl tracking-widest font-extrabold bg-blue-900 text-white rounded-lg p-2">
-                            PAGE
-                        </mark>
-                    </Boop>
-                </div>
-                <div></div>
             </div>
         </>
     );
