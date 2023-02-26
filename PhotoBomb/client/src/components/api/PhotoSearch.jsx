@@ -1,8 +1,9 @@
+//WORK IN PROGRESS
 //I'll probably use this to search photos.
 
 import React, { useState } from "react";
 
-function PokemonSearch() {
+function PhotoSearch() {
     const [searchTerm, setSearchTerm] = useState("");
     const [imageUrl, setImageUrl] = useState("");
 
@@ -16,13 +17,13 @@ function PokemonSearch() {
 
         // Send a request to the PokeAPI to get the data for the desired Pokemon
         const response = await fetch(
-            `https://pokeapi.co/api/v2/pokemon/${searchTerm}`
+            `http://localhost:8000/api/photos/${searchTerm}`//not sure if this is correct link
         );
         const data = await response.json();
 
         // Extract the image URL from the data and set it as the image URL state
-        const image = data.sprites.other.dream_world.front_default;
-        console.log("image", data.sprites.other.dream_world.front_default)
+        const image = data.sprites.other.dream_world.front_default;  //need to replace this with ours...
+        console.log("image", data.sprites.other.dream_world.front_default)  //need to replace with ours...
         setImageUrl(image);
     };
 
@@ -84,11 +85,11 @@ function PokemonSearch() {
                 </button>
             </form>
             <div className="m-2 border rounded-m h-96 w-96 border-black p-2">
-                <b>Image of Pokemon will be displayed here:</b><hr/>
+                <b>Photo will be displayed here:</b><hr/>
                 <div className="">{imageUrl && <img src={imageUrl} alt={searchTerm} />}</div>
             </div>
         </div>
     );
 }
 
-export default PokemonSearch;
+export default PhotoSearch;
