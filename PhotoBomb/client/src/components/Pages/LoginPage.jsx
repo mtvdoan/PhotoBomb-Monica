@@ -6,7 +6,7 @@ import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import SearchBar from "../Buttons/SearchBar";
-const LoginPage = ({setUser}) => {
+const LoginPage = ({ setUser }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -30,7 +30,9 @@ const LoginPage = ({setUser}) => {
                 setUser(res.data.user);
                 console.log("user", res.data.user);
                 console.log("user", res);
-                alert(`Yay, ${res.data.user.firstName} has successfully logged in!`);
+                alert(
+                    `Yay, ${res.data.user.firstName} has successfully logged in!`
+                );
                 navigate("/TestConfirmPage");
             })
             .catch((err) => {
@@ -51,8 +53,8 @@ const LoginPage = ({setUser}) => {
                         />
                         <img
                             src={bomb}
-                            className="h-12 w-12 m-1"
-                            alt="favicon"
+                            className="h-12 w-12 m-1 hover:animate-bounce"
+                            alt="bomb"
                         />
                         <Boop rotation={"5"} timing={"200"}>
                             <span className="self-center tracking-tighter font-extrabold text-5xl font-semibold whitespace-nowrap dark:text-white">
@@ -105,11 +107,10 @@ const LoginPage = ({setUser}) => {
                                         href="_#"
                                         class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
-                                        Contact
+                                        Creators
                                     </a>
                                 </li>
                             </ul>
-                        <SearchBar/>
                         </div>
                     </div>
                 </nav>

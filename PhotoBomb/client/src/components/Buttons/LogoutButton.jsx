@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import Boop from '../../styles/Boop';
+import Boop from "../../styles/Boop";
 const LogoutButton = (props) => {
     const navigate = useNavigate();
     const [loggedIn, setLoggedIn] = useState(false);
@@ -28,7 +28,9 @@ const LogoutButton = (props) => {
                     <Boop rotation={"5"} timing={"200"}>
                         <div className="flex bg-red-700 hover:bg-red-900 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
                             <div className="mr-2 text-white text-lg">
-                                <Link onClick={handleLogOut} to={"/login"}>Logout</Link>
+                                <Link onClick={handleLogOut} to={"/login"}>
+                                    Logout
+                                </Link>
                             </div>
                         </div>
                     </Boop>

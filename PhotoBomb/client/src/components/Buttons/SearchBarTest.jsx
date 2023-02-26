@@ -1,8 +1,33 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 
 const SearchBar = ({ user }) => {
+    const [search, setSearch] = useState("");
+    const[count, setCount] = useState(0);
+    const {usersList, setUsersList} = useState([]);
+    const {errors, setErrors} = useState("");
+        useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/users/")
+            .then((res) => {
+                console.log("RES!", res.data);
+                console.log(user);
+                setUsersList(res.data.users.filter((ele) => ele.firstName.toLowerCase().includes(search)))
+                console.log();
+            });
+
+    }, [search]);
+
+    const handleChange = (e) =>{
+        e.preventDefault();
+        setSearch(e.target.value.toLowerCase());
+    };
+    
+    console.log("list", usersList);
+
     return (
-        <form className="flex items-center m-4" style={{width:"500px"}}>
+        <>
+        <form className="flex items-center m-4" style={{ width: "500px" }}>
             <label htmlFor="simple-search" className="sr-only">
                 Search
             </label>
@@ -25,6 +50,7 @@ const SearchBar = ({ user }) => {
                 <input
                     type="text"
                     id="simple-search"
+                    
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search"
                     required
@@ -51,6 +77,31 @@ const SearchBar = ({ user }) => {
                 <span className="sr-only">Search</span>
             </button>
         </form>
+        <div>Number of useres Selected:{usersList.length}</div>
+        <br/><br/>
+            <table border={1}>
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>FirstName</td>
+                    <td>LastName</td>
+                    <td>Email</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                {usersList.map((ele, idx) => {
+                    return <tr key={idx}>
+                        <td>{ele.id}</td>
+                        <td>{ele.firstName}</td>
+                        <td>{ele.lastName}</td>
+                        <td>{ele.email}</td>
+                    </tr>
+                })}
+                </tbody>
+            </table>
+        </>
     );
 };
+
 export default SearchBar;

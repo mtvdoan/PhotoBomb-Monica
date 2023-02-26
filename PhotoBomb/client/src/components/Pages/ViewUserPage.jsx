@@ -38,8 +38,8 @@ const ViewUserPage = ({ user }) => {
                             />
                             <img
                                 src={bomb}
-                                className="h-12 w-12 m-1"
-                                alt="favicon"
+                                className="h-12 w-12 m-1 hover:animate-spin"
+                                alt="bomb"
                             />
                             <Boop rotation={"5"} timing={"200"}>
                                 <span className="self-center tracking-tighter font-extrabold text-5xl font-semibold whitespace-nowrap dark:text-white">
@@ -88,9 +88,8 @@ const ViewUserPage = ({ user }) => {
                                 </ul>
                                 <div>
                                     <span className="flex">
-                                        <SearchBar/>
                                         <LoggedInAsButton user={user} />
-                                        <EditUserButton user={user}/>
+                                        <EditUserButton user={user} />
                                         <Boop rotation={"5"} timing={"200"}>
                                             <div className="flex bg-blue-500 hover:bg-blue-600 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
                                                 <div className="cursor-pointer mr-2 text-white text-lg shadow-lg">

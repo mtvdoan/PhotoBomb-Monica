@@ -64,8 +64,8 @@ const EditUser = ({ user }) => {
                         />
                         <img
                             src={bomb}
-                            className="h-12 w-12 m-1"
-                            alt="favicon"
+                            className="h-12 w-12 m-1 hover:animate-bounce"
+                            alt="bomb"
                         />
                         <Boop rotation={"5"} timing={"200"}>
                             <span className="self-center tracking-tighter font-extrabold text-5xl font-semibold whitespace-nowrap dark:text-white">
@@ -105,7 +105,6 @@ const EditUser = ({ user }) => {
                                 </li>
                             </ul>
                             <div className="flex">
-                                <SearchBar/>
                                 <LoggedInAsButton user={user} />
                                 <div>
                                     <span className="flex">

@@ -1,7 +1,6 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Nav from "./components/Pages/Nav";
 import LoginPage from "./components/Pages/LoginPage";
 import HomePage from "./components/Pages/HomePage";
 import TestConfirmPage from "./components/Pages/TestConfirmPage";
@@ -13,10 +12,13 @@ import LoggedInAsButton from "./components/Buttons/LoggedInAsButton";
 import EditUserPage from "./components/Pages/EditUserPage";
 import EditUserButton from "./components/Buttons/EditUserButton";
 import DeleteUserButton from "./components/Buttons/DeleteUserButton";
+import SearchBar from './components/Buttons/SearchBar';
+import UserListSearch from './components/api/UserListSearch';
+
 function App() {
     const [authorized, setAuthorized] = useState("");
-    // 1 ) CREATE A STATE TO SAVE THE USER
     const [user, setUser] = useState({});
+
 
     return (
         <>
@@ -66,9 +68,15 @@ function App() {
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
-                                          <Route
+                        <Route
                             path="/DeleteUserButton"
                             element={<DeleteUserButton user={user} />}
+                            authorized={authorized}
+                            setAuthorized={setAuthorized}
+                        />
+                        <Route
+                            path="/SearchBar"
+                            element={<SearchBar user={user} />}
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
@@ -78,10 +86,15 @@ function App() {
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
+                                                <Route
+                            path="/UserListSearch"
+                            element={<UserListSearch user={user} />}
+                            authorized={authorized}
+                            setAuthorized={setAuthorized}
+                        />
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
-            {/* </main> */}
         </>
     );
 }

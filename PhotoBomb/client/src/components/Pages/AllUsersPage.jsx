@@ -10,6 +10,7 @@ import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import EditUserButton from "../Buttons/EditUserButton";
 import SearchBar from "../Buttons/SearchBar";
+import UserListSearch from "../api/UserListSearch";
 const AllUsersPage = ({ user }) => {
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
@@ -45,7 +46,7 @@ const AllUsersPage = ({ user }) => {
                         />
                         <img
                             src={bomb}
-                            className="h-12 w-12 m-1"
+                            className="h-12 w-12 m-1 hover:animate-bounce"
                             alt="favicon"
                         />
                         <Boop rotation={"5"} timing={"200"}>
@@ -86,11 +87,10 @@ const AllUsersPage = ({ user }) => {
                                 </li>
                             </ul>
                             <div className="flex">
-                                <SearchBar/>
                                 <LoggedInAsButton user={user} />
-                                <EditUserButton user={user}/>
+                                <EditUserButton user={user} />
                             </div>
-                                <LogoutButton />
+                            <LogoutButton />
                         </div>
                     </div>
                 </nav>
@@ -100,50 +100,7 @@ const AllUsersPage = ({ user }) => {
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                             <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                                 <div className="max-w-md mx-auto">
-                                    <div>
-                                        <h1 className="text-4xl font-extrabold">
-                                            All Users
-                                        </h1>
-                                        <div>
-                                            {usersList.length > 0 &&
-                                                usersList.map((user, index) => (
-                                                    <>
-                                                        <Boop
-                                                            rotation={"5"}
-                                                            timing={"200"}
-                                                        >
-                                                            <div className="w-56 grid grid-flow-col m-2 text-center inline-flex whitespace-nowrap">
-                                                                <img
-                                                                    src={bomb}
-                                                                    alt="bomb"
-                                                                    className="h-5 w-5"
-                                                                />
-                                                                <div
-                                                                    key={
-                                                                        user.id
-                                                                    }
-                                                                >
-                                                                    <button>
-                                                                        <Link
-                                                                            to={
-                                                                                "/user/" +
-                                                                                user._id
-                                                                            }
-                                                                            className="text-blue-700 underline cursor-pointer"
-                                                                        >
-                                                                            {
-                                                                                user.email
-                                                                            }
-                                                                        </Link>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </Boop>
-                                                    </>
-                                                ))}
-                                            <ul className="mb-8 space-y-4 text-left text-gray-500 dark:text-gray-400"></ul>
-                                        </div>
-                                    </div>
+                                    <UserListSearch />
                                 </div>
                             </div>
                         </div>

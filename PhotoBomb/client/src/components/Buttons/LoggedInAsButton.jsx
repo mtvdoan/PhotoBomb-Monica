@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Boop from "../../styles/Boop";
-import {useNavigate} from "react-router-dom";
-import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const LoggedInAsButton = ({ user }) => {
-        const [usersList, setUsersList] = useState([]);
+    const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
     const [authorized, setAuthorized] = useState("");

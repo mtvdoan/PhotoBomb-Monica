@@ -1,4 +1,5 @@
-import React from 'react';
+//Custom Hook for Boop
+import React from "react";
 const QUERY = "(prefers-reduced-motion: no-preference)";
 const isRenderingOnServer = typeof window === "undefined";
 const getInitialState = () => {

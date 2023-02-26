@@ -40,12 +40,11 @@ const RegisterPage = (props) => {
                 console.log("registered user", res.data.user);
                 alert("Thanks for registering. Please log in to get started!");
                 navigate("/login");
-
             })
             .catch((res) => {
                 setErrors(res.response.data.errors);
                 console.log(res.response.data.errors);
-            })
+            });
     };
     return (
         <>
@@ -59,15 +58,15 @@ const RegisterPage = (props) => {
                         />
                         <img
                             src={bomb}
-                            className="h-12 w-12 m-1"
-                            alt="favicon"
+                            className="h-12 w-12 m-1 hover:animate-bounce"
+                            alt="bomb"
                         />
                         <Boop rotation={"5"} timing={"200"}>
                             <span className="self-center tracking-tighter font-extrabold text-5xl font-semibold whitespace-nowrap dark:text-white">
                                 PhotoBomb!
                             </span>
                         </Boop>
-         
+
                         <div
                             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                             id="navbar-sticky"
@@ -104,29 +103,25 @@ const RegisterPage = (props) => {
                                         className="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         Creators
-                                        
                                     </a>
                                 </li>
-                                <li>
-
-                                </li>
+                                <li></li>
                             </ul>
-                                           <div className="flex md:order-2 w-auto whitespace-nowrap">
-                            <Boop rotation={"5"} timing={"200"}>
-                                <Link
-                                    type="button"
-                                    to={"/Login"}
-                                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Already got an account? Login Here
-                                </Link>
-                            </Boop>
-                        </div>
-                                                       <SearchBar/>
+                            <div className="flex md:order-2 w-auto whitespace-nowrap">
+                                <Boop rotation={"5"} timing={"200"}>
+                                    <Link
+                                        type="button"
+                                        to={"/Login"}
+                                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    >
+                                        Already got an account? Login Here
+                                    </Link>
+                                </Boop>
+                            </div>
                         </div>
                     </div>
                 </nav>
-                <div> 
+                <div>
                     <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
                         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -164,7 +159,10 @@ const RegisterPage = (props) => {
                                             )}
                                             {errors.confirmPassword && (
                                                 <p className="accent">
-                                                    {errors.confirmPassword.message}
+                                                    {
+                                                        errors.confirmPassword
+                                                            .message
+                                                    }
                                                 </p>
                                             )}
                                         </div>

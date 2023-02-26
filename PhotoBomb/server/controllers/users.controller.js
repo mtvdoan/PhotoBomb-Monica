@@ -31,7 +31,9 @@ module.exports = {
             const checkEmail = await User.findOne({ email: req.body.email });
             if (checkEmail) {
                 res.status(400).json({
-                    errors: { email: { message: "Email needs to be unique. 📸" } },
+                    errors: {
+                        email: { message: "Email needs to be unique. 📸" },
+                    },
                 });
                 // check other inputs
             } else {
@@ -89,10 +91,13 @@ module.exports = {
                         { id: user._id },
                         process.env.SECRET_KEY
                     );
-                    res
-                        .cookie("userToken", token, {expires: new Date(Date.now() + 900000)})
-                        .json({successMessage: `userToken is ${token}`, user: payload});
-                        console.log(payload);
+                    res.cookie("userToken", token, {
+                        expires: new Date(Date.now() + 900000),
+                    }).json({
+                        successMessage: `userToken is ${token}`,
+                        user: payload,
+                    });
+                    console.log(payload);
                 }
             }
         } catch (err) {
@@ -103,7 +108,9 @@ module.exports = {
     },
     logout: (req, res) => {
         console.log(`Logging out!`);
-        res.clearCookie("userToken").json({ successMessage: "User logged out" });
+        res.clearCookie("userToken").json({
+            successMessage: "User logged out",
+        });
         console.log(res);
     },
 
@@ -122,15 +129,18 @@ module.exports = {
     },
 
     getLogged: async (req, res) => {
-    try {
-        const user = jwt.verify(req.cookies.userToken, process.env.SECRET_KEY);
-        const currentUser = await User.findOne({ email: user.email });
-        res.json(`${currentUser} is logged in`);
-        console.log(currentUser);
-    } catch (error) {
-        res.status(400).json({ errors: 'failed to get logged in user' })
-    }
-},
+        try {
+            const user = jwt.verify(
+                req.cookies.userToken,
+                process.env.SECRET_KEY
+            );
+            const currentUser = await User.findOne({ email: user.email });
+            res.json(`${currentUser} is logged in`);
+            console.log(currentUser);
+        } catch (error) {
+            res.status(400).json({ errors: "failed to get logged in user" });
+        }
+    },
 
     deleteUser: (req, res) => {
         User.findByIdAndDelete(req.params.id)
