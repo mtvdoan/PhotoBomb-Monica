@@ -89,6 +89,7 @@ const AllUsersPage = ({ user }) => {
                             <div className="flex">
                                 <LoggedInAsButton user={user} />
                                 <EditUserButton user={user} />
+                                <Link className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2" to={"/TestConfirmPage"}>Go Back To Test Page</Link>
                             </div>
                             <LogoutButton />
                         </div>

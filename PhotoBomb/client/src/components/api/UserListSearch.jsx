@@ -42,63 +42,63 @@ const UserListSearch = ({ user }) => {
             />
             <ul>
                 <span className="whitespace-nowrap overflow-auto">
-                {filteredUsers.length > 0
-                    ? filteredUsers.map((user) => (
-                        <div className="hover:cursor-pointer hover:text-blue-900">
-                            <Boop
-                                className="flex flex-col"
-                                rotation={"5"}
-                                timing={"200"}
-                            >
-                                <Link
-                                    className=""
-                                    to={`/user/${user._id}`}
-                                >
-                                    <li
-                                        className=" flex text-blue-600 cursor-pointer"
-                                        key={user.id}
-                                    >
-                                        <div className="text-2xl font-extrabold tracking-tightest">
-                                            {user.firstName}{" "}
-                                            {user.lastName}
-                                        </div>
-                                        <div className="text-xl">
-                                            {" "}
-                                            - {user.email}
-                                        </div>
-                                    </li>
-                                </Link>
-                            </Boop>
-                        </div>
-                    ))
-                    : users.map((user) => (
-                        <div className="cursor-pointer hover:text-blue-900">
-                            <Boop
-                                className=""
-                                rotation={"5"}
-                                timing={"200"}
-                            >
-                                <Link
-                                    className="cursor-pointer hover:text-blue-900"
-                                    to={`/user/${user._id}`}
-                                >
-                                    <li
-                                        className=" m-2 flex text-blue-500"
-                                        key={user.id}
-                                    >
-                                        <div className="hover:text-blue-900 cursor-pointer text-2xl font-extrabold tracking-tightest">
-                                            {user.firstName}{" "}
-                                            {user.lastName}
-                                        </div>
-                                        <div className="hover:text-blue-900 cursor-pointer text-xl">
-                                            {" "}
-                                            - {user.email}
-                                        </div>
-                                    </li>
-                                </Link>
-                            </Boop>
-                        </div>
-                    ))}
+                    {filteredUsers.length > 0
+                        ? filteredUsers.map((user) => (
+                              <div className="hover:cursor-pointer hover:text-blue-900">
+                                  <Boop
+                                      className="flex flex-col"
+                                      rotation={"5"}
+                                      timing={"200"}
+                                  >
+                                      <Link
+                                          className=""
+                                          to={`/user/${user._id}`}
+                                      >
+                                          <li
+                                              className=" flex text-blue-600 cursor-pointer"
+                                              key={user.id}
+                                          >
+                                              <div className="text-2xl font-extrabold tracking-tightest">
+                                                  {user.firstName}{" "}
+                                                  {user.lastName}
+                                              </div>
+                                              <div className="text-xl">
+                                                  {" "}
+                                                  - {user.email}
+                                              </div>
+                                          </li>
+                                      </Link>
+                                  </Boop>
+                              </div>
+                          ))
+                        : users.map((user) => (
+                              <div className="cursor-pointer hover:text-blue-900">
+                                  <Boop
+                                      className=""
+                                      rotation={"5"}
+                                      timing={"200"}
+                                  >
+                                      <Link
+                                          className="cursor-pointer hover:text-blue-900"
+                                          to={`/user/${user._id}`}
+                                      >
+                                          <li
+                                              className=" m-2 flex text-blue-500"
+                                              key={user.id}
+                                          >
+                                              <div className="hover:text-blue-900 cursor-pointer text-2xl font-extrabold tracking-tightest">
+                                                  {user.firstName}{" "}
+                                                  {user.lastName}
+                                              </div>
+                                              <div className="hover:text-blue-900 cursor-pointer text-xl">
+                                                  {" "}
+                                                  - {user.email}
+                                              </div>
+                                          </li>
+                                      </Link>
+                                  </Boop>
+                              </div>
+                          ))}
                 </span>
             </ul>
         </div>

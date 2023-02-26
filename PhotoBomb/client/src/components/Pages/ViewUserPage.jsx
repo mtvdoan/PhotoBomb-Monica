@@ -101,6 +101,13 @@ const ViewUserPage = ({ user }) => {
                                         </Boop>
                                     </span>
                                 </div>
+                                <Link
+                                    className="m-2 border w-24 border-black rounded-lg text-center bg-blue-200 p-2"
+                                    to={"/TestConfirmPage"}
+                                >
+                                    Go Back To Test Page
+                                </Link>
+
                                 <LogoutButton />
                             </div>
                         </div>

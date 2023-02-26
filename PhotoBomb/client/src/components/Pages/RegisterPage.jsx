@@ -117,6 +117,14 @@ const RegisterPage = (props) => {
                                         Already got an account? Login Here
                                     </Link>
                                 </Boop>
+                                <div>
+                                    <Link
+                                        className="m-2 border w-24 border-black rounded-lg text-center bg-blue-200 p-2"
+                                        to={"/TestConfirmPage"}
+                                    >
+                                        Go Back To Test Page
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

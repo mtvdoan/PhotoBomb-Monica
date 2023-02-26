@@ -120,6 +120,13 @@ const EditUser = ({ user }) => {
                                     </span>
                                 </div>
                             </div>
+                            <Link
+                                className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"
+                                to={"/TestConfirmPage"}
+                            >
+                                Go Back To Test Page
+                            </Link>
+
                             <LogoutButton />
                         </div>
                     </div>

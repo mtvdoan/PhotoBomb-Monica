@@ -1,22 +1,23 @@
-
 import { Link } from "react-router-dom";
 import LogoutButton from "../Buttons/LogoutButton";
 import SearchBar from "../Buttons/SearchBar";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import UserListSearch from "../api/UserListSearch";
-
+import PokemonSearch from "../api/PokemonSearch";
 const TestConfirmPage = ({ user }) => {
-
     return (
         <>
             <div>
-                <div className="text-xl text-center font-extrabold mt-96 grid grid-rows-5 content-center flex justify-center">
-                    <h2>Just a place to test user login/reg/logout...</h2>
+                <div className="flex text-3xl text-left font-extrabold grid grid-rows-12 content-center flex justify-center">
+                    <h2>
+                        Just a place to test user related stuff and search
+                        bar...
+                    </h2>
                     <h4 className="">
                         If you have reached here, you have successfully logged
                         in and navigated here.
                     </h4>
-                    <h4 className="text-purple-800">
+                    <h4 className="text-red-800">
                         Current user logged in: {user.firstName}
                     </h4>
                     <LogoutButton />
@@ -25,7 +26,14 @@ const TestConfirmPage = ({ user }) => {
                     </button>
                 </div>
             </div>
-            <UserListSearch/>
+            <div className="flex grid grid-cols-2 content-center">
+                <UserListSearch />
+                <div>
+                <h1 className="whitespace-normal text-center w-96 font-bold text-blue-900">Created a search bar filter for an existing api like Pokemon just to test out how to retrieve images.  Will use for reference.
+                </h1>
+                <PokemonSearch />
+                </div>
+            </div>
         </>
     );
 };
