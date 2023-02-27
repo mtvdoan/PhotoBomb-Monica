@@ -29,7 +29,7 @@ const UserListSearch = ({ user }) => {
     };
 
     return (
-        <div>
+        <div className="" style={{width:"auto"}}>
             <h1 className="text-5xl tracking-tightest font-extrabold m-2 text-center">
                 Users
             </h1>
@@ -40,8 +40,8 @@ const UserListSearch = ({ user }) => {
                 onChange={handleQueryChange}
                 placeholder="Search users by first name, last name, or email"
             />
-            <ul>
-                <span className="whitespace-nowrap overflow-auto">
+            <ul className="overflow-y-scroll w-auto  h-96">
+                <span className="whitespace-nowrap">
                     {filteredUsers.length > 0
                         ? filteredUsers.map((user) => (
                               <div className="hover:cursor-pointer hover:text-blue-900">

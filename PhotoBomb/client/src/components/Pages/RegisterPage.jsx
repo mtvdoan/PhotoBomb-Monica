@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 // import UserContext from '../../context/UserContext';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -6,10 +6,12 @@ import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
+import { faker } from "@faker-js/faker";
 import SearchBar from "../Buttons/SearchBar";
 const RegisterPage = (props) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,6 +21,23 @@ const RegisterPage = (props) => {
     const navigate = useNavigate();
 
     // const {UserContext} = useContext(UserContext);
+
+    //FAKER USER GENERATOR:
+    useEffect(() => {
+        const f = faker.name.firstName();
+        const l = faker.name.lastName();
+        const p = "password";
+        const e = `${f}.${l}@email.com`
+        const randomUserName = `${f}.${l}`;
+        const u = randomUserName.toLowerCase();
+        setFirstName(f);
+        setLastName(l);
+        setEmail(e);
+        setUsername(u);
+        setPassword(p);
+        setConfirmPassword(p);
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("register form");
@@ -28,6 +47,7 @@ const RegisterPage = (props) => {
                 {
                     firstName,
                     lastName,
+                    username,
                     email,
                     password,
                     confirmPassword,
@@ -178,17 +198,18 @@ const RegisterPage = (props) => {
                                             <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                                                 <div className="relative">
                                                     <input
-                                                        autoComplete="off"
+                                                        // autoComplete="off"
                                                         id="firstName"
                                                         name="firstName"
                                                         type="text"
+                                                        value={firstName}
                                                         onChange={(e) =>
                                                             setFirstName(
                                                                 e.target.value
                                                             )
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder="First Name"
+                                                        // placeholder={randomFirstName}
                                                     />
                                                     <label
                                                         htmlFor="firstName"
@@ -199,7 +220,7 @@ const RegisterPage = (props) => {
                                                 </div>
                                                 <div className="relative">
                                                     <input
-                                                        autoComplete="off"
+                                                        // autoComplete="off"
                                                         id="lastName"
                                                         name="lastName"
                                                         type="text"
@@ -209,13 +230,36 @@ const RegisterPage = (props) => {
                                                             )
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder="lastName"
+                                                        value={lastName}
+                                                        // placeholder={randomLastName}
                                                     />
                                                     <label
                                                         htmlFor="lastName"
                                                         className="absolute left-4 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-4 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
                                                     >
                                                         Last Name
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        // autoComplete="off"
+                                                        id="username"
+                                                        name="username"
+                                                        type="text"
+                                                        onChange={(e) =>
+                                                            setUsername(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        // placeholder={lowercaseUserName}
+                                                        value={username}
+                                                    />
+                                                    <label
+                                                        htmlFor="username"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-4 transition-all peer-focus:-top-4 peer-focus:text-gray-600 peer-focus:text-sm"
+                                                    >
+                                                        Username
                                                     </label>
                                                 </div>
                                                 <div className="relative">
@@ -230,7 +274,8 @@ const RegisterPage = (props) => {
                                                             )
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder="Email address"
+                                                        // placeholder={lowercaseRandomEmail}
+                                                        value={email}
                                                     />
                                                     <label
                                                         htmlFor="email"
@@ -244,14 +289,15 @@ const RegisterPage = (props) => {
                                                         autoComplete="off"
                                                         id="password"
                                                         name="password"
-                                                        type="password"
+                                                        type="text"
                                                         onChange={(e) =>
                                                             setPassword(
                                                                 e.target.value
                                                             )
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder="Password"
+                                                        placeholder="Create Password"
+                                                        value={password}
                                                     />
                                                     <label
                                                         htmlFor="password"
@@ -265,14 +311,15 @@ const RegisterPage = (props) => {
                                                         autoComplete="off"
                                                         id="confirmPassword"
                                                         name="confirmPassword"
-                                                        type="password"
+                                                        type="text"
                                                         onChange={(e) =>
                                                             setConfirmPassword(
                                                                 e.target.value
                                                             )
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder="First Name"
+                                                        // placeholder="Confirm Password"
+                                                        value={confirmPassword}
                                                     />
                                                     <label
                                                         htmlFor="confirmPassword"

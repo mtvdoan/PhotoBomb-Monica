@@ -44,6 +44,7 @@ module.exports = {
                 // use schema data to create payload
                 const payload = {
                     _id: user._id,
+                    username: user.username,
                     email: user.email,
                     firstName: user.firstName,
                     lastName: user.lastName,
@@ -82,6 +83,7 @@ module.exports = {
                 } else {
                     const payload = {
                         _id: user._id,
+                        username: user.username,
                         email: user.email,
                         firstName: user.firstName,
                         lastName: user.lastName,

@@ -38,7 +38,7 @@ const AllUsersPage = ({ user }) => {
         <>
             <div>
                 <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class="container flex items-center justify-center mx-auto">
+                    <div class="container flex items-center justify-center mx-auto ">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -96,11 +96,11 @@ const AllUsersPage = ({ user }) => {
                     </div>
                 </nav>
                 <div>
-                    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-                        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+                    <div className="min-h-screen bg-gray-100 py-auto flex flex-col justify-center lg:py-56 mt-30 ">
+                        <div className="relative py-3 sm:max-w-auto sm:mx-auto" style={{width:"1000px"}}>
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                             <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                                <div className="max-w-md mx-auto">
+                                <div className="max-w-xl mx-auto">
                                     <UserListSearch />
                                 </div>
                             </div>

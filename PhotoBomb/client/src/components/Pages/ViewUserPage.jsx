@@ -146,6 +146,16 @@ const ViewUserPage = ({ user }) => {
                                         <Boop rotation={"6"} timing={"200"}>
                                             <div className="">
                                                 <span className="mr-4 text-2xl mt-2 font-bold">
+                                                    Username:
+                                                </span>
+                                                <span className="text-xl">
+                                                    {viewUser.username}
+                                                </span>
+                                            </div>
+                                        </Boop>
+                                        <Boop rotation={"6"} timing={"200"}>
+                                            <div className="">
+                                                <span className="mr-4 text-2xl mt-2 font-bold">
                                                     Email:
                                                 </span>
                                                 <span className="text-xl">

@@ -9,5 +9,5 @@ module.exports = app  => {
     app.put('/api/users/update/:id', UserController.updateUser)
     app.delete('/api/users/delete/:id', UserController.deleteUser)
     app.get('/api/users/user-current', UserController.getLogged)
-    // app.get('/api/users/test', UserController.index)
+
 }

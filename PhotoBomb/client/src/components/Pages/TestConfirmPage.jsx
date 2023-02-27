@@ -34,6 +34,7 @@ const TestConfirmPage = ({ user }) => {
                 <PokemonSearch />
                 </div>
             </div>
+            
         </>
     );
 };
