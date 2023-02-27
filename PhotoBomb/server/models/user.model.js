@@ -3,11 +3,6 @@ const bcrypt = require("bcrypt");
 
 const UserSchema = new mongoose.Schema(
     {
-        username: {
-            type: String,
-            required: [true, "Username is required"],
-            minLength: [2, "Username must be at least 2 characters"],
-        },
         firstName: {
             type: String,
             required: [true, "First Name is required"],
@@ -17,6 +12,11 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: [true, "Last Name is required"],
             minLength: [2, "Last Name must be at least 2 characters"],
+        },
+        username: {
+            type: String,
+            required: [true, "Username is required"],
+            minLength: [2, "Username must be at least 2 characters"],
         },
         email: {
             type: String,
@@ -36,14 +36,14 @@ const UserSchema = new mongoose.Schema(
 ? MongoDB schema provides virtual
 ? short term value
 !Commented this block of code BELOW for the sake of testing.  Otherwise, registering a user will think that password & confirmPass don't match for some reason;
+ */
 UserSchema.virtual("confirmPassword")
     .get(() => this._confirmPassword)
     .set((e) => (this._confirmPassword = e));
- */
 
 // pre or post middleware
 UserSchema.pre("validate", function (next) {
-    if (this.password == this.confirmPassword) { //This was a === but changed it to == to help with generating random users
+    if (this.password !== this.confirmPassword) { //This was a but changed it to == to help with generating random users
         this.invalidate("confirmPassword", "Passwords must match!!");
     }
     // otherwise call next middleware

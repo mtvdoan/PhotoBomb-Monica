@@ -83,10 +83,10 @@ module.exports = {
                 } else {
                     const payload = {
                         _id: user._id,
-                        username: user.username,
-                        email: user.email,
                         firstName: user.firstName,
                         lastName: user.lastName,
+                        username: user.username,
+                        email: user.email,
                     };
                     // create a token
                     const token = jwt.sign(
@@ -117,10 +117,7 @@ module.exports = {
     },
 
     updateUser: (req, res) => {
-        User.findByIdAndUpdate(req.params.id, req.body, {
-            new: true,
-            runValidators: true,
-        })
+        User.findByIdAndUpdate(req.params.id, req.body, {new: true})
             .then((updatedUser) => res.json({ updatedUser }))
             .catch((err) =>
                 res.status(400).json({

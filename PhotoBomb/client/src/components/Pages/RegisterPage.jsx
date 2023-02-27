@@ -8,7 +8,7 @@ import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import { faker } from "@faker-js/faker";
 import SearchBar from "../Buttons/SearchBar";
-const RegisterPage = (props) => {
+const RegisterPage = ({setUser}) => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
@@ -22,21 +22,22 @@ const RegisterPage = (props) => {
 
     // const {UserContext} = useContext(UserContext);
 
-    //FAKER USER GENERATOR:
-    useEffect(() => {
-        const f = faker.name.firstName();
-        const l = faker.name.lastName();
-        const p = "password";
-        const e = `${f}.${l}@email.com`
-        const randomUserName = `${f}.${l}`;
-        const u = randomUserName.toLowerCase();
-        setFirstName(f);
-        setLastName(l);
-        setEmail(e);
-        setUsername(u);
-        setPassword(p);
-        setConfirmPassword(p);
-    }, []);
+    // //FAKER USER GENERATOR:
+    // useEffect(() => {
+    //     const f = faker.name.firstName();
+    //     const l = faker.name.lastName();
+    //     const p = "password";
+    //     const e = `${f}.${l}@email.com`
+    //     const eLowercase = e.toLowerCase();
+    //     const randomUserName = `${f}.${l}`;
+    //     const u = randomUserName.toLowerCase();
+    //     setFirstName(f);
+    //     setLastName(l);
+    //     setEmail(eLowercase);
+    //     setUsername(u);
+    //     setPassword(p);
+    //     setConfirmPassword(p);
+    // }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,6 +59,7 @@ const RegisterPage = (props) => {
             )
             .then((res) => {
                 console.log("registered user", res.data.user);
+                   setUser(res.data.user)
                 alert("Thanks for registering. Please log in to get started!");
                 navigate("/login");
             })
@@ -289,7 +291,7 @@ const RegisterPage = (props) => {
                                                         autoComplete="off"
                                                         id="password"
                                                         name="password"
-                                                        type="text"
+                                                        type="password"
                                                         onChange={(e) =>
                                                             setPassword(
                                                                 e.target.value
@@ -297,7 +299,7 @@ const RegisterPage = (props) => {
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         placeholder="Create Password"
-                                                        value={password}
+                                                        // value={password}
                                                     />
                                                     <label
                                                         htmlFor="password"
@@ -311,15 +313,15 @@ const RegisterPage = (props) => {
                                                         autoComplete="off"
                                                         id="confirmPassword"
                                                         name="confirmPassword"
-                                                        type="text"
+                                                        type="password"
                                                         onChange={(e) =>
                                                             setConfirmPassword(
                                                                 e.target.value
                                                             )
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        // placeholder="Confirm Password"
-                                                        value={confirmPassword}
+                                                        placeholder="Confirm Password"
+                                                        // value={confirmPassword}
                                                     />
                                                     <label
                                                         htmlFor="confirmPassword"

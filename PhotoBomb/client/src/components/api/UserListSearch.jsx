@@ -29,7 +29,7 @@ const UserListSearch = ({ user }) => {
     };
 
     return (
-        <div className="" style={{width:"auto"}}>
+        <div className="" style={{ width: "auto" }}>
             <h1 className="text-5xl tracking-tightest font-extrabold m-2 text-center">
                 Users
             </h1>
@@ -59,12 +59,7 @@ const UserListSearch = ({ user }) => {
                                               key={user.id}
                                           >
                                               <div className="text-2xl font-extrabold tracking-tightest">
-                                                  {user.firstName}{" "}
-                                                  {user.lastName}
-                                              </div>
-                                              <div className="text-xl">
-                                                  {" "}
-                                                  - {user.email}
+                                                  {user.username}
                                               </div>
                                           </li>
                                       </Link>
@@ -87,12 +82,7 @@ const UserListSearch = ({ user }) => {
                                               key={user.id}
                                           >
                                               <div className="hover:text-blue-900 cursor-pointer text-2xl font-extrabold tracking-tightest">
-                                                  {user.firstName}{" "}
-                                                  {user.lastName}
-                                              </div>
-                                              <div className="hover:text-blue-900 cursor-pointer text-xl">
-                                                  {" "}
-                                                  - {user.email}
+                                                  {user.username}{" "}
                                               </div>
                                           </li>
                                       </Link>

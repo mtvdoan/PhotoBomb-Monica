@@ -18,8 +18,7 @@ import UserListSearch from './components/api/UserListSearch';
 function App() {
     const [authorized, setAuthorized] = useState("");
     const [user, setUser] = useState({});
-
-
+    
     return (
         <>
             <BrowserRouter>
@@ -86,7 +85,7 @@ function App() {
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
-                                                <Route
+                        <Route
                             path="/UserListSearch"
                             element={<UserListSearch user={user} />}
                             authorized={authorized}

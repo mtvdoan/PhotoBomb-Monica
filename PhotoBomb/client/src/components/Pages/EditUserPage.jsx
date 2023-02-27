@@ -9,9 +9,8 @@ import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import DeleteUserButton from "../Buttons/DeleteUserButton";
-import SearchBar from "../Buttons/SearchBar";
 
-const EditUser = ({ user }) => {
+const EditUserPage = ({ user }) => {
     const { id } = useParams();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -34,7 +33,6 @@ const EditUser = ({ user }) => {
                 {
                     firstName,
                     lastName,
-                    username,
                     email,
                     password,
                     confirmPassword,
@@ -58,7 +56,8 @@ const EditUser = ({ user }) => {
         <>
             <div>
                 <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class="container flex items-center justify-center mx-auto">
+
+                    <div class="container flex flex-wrap items-center justify-center mx-auto">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -66,8 +65,8 @@ const EditUser = ({ user }) => {
                         />
                         <img
                             src={bomb}
-                            className="h-12 w-12 m-1 hover:animate-bounce"
-                            alt="bomb"
+                            className="h-12 w-12 m-1"
+                            alt="favicon"
                         />
                         <Boop rotation={"5"} timing={"200"}>
                             <span className="self-center tracking-tighter font-extrabold text-5xl font-semibold whitespace-nowrap dark:text-white">
@@ -122,13 +121,6 @@ const EditUser = ({ user }) => {
                                     </span>
                                 </div>
                             </div>
-                            <Link
-                                className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"
-                                to={"/TestConfirmPage"}
-                            >
-                                Go Back To Test Page
-                            </Link>
-
                             <LogoutButton />
                         </div>
                     </div>
@@ -156,14 +148,15 @@ const EditUser = ({ user }) => {
                                                 {errors.lastName.message}
                                             </p>
                                         )}
-                                        {errors.username && (
-                                            <p className="accent">
-                                                {errors.username.message}
-                                            </p>
-                                        )}
+
                                         {errors.email && (
                                             <p className="accent">
                                                 {errors.email.message}
+                                            </p>
+                                        )}
+                                                 {errors.username && (
+                                            <p className="accent">
+                                                {errors.username.message}
                                             </p>
                                         )}
                                     </div>
@@ -209,21 +202,19 @@ const EditUser = ({ user }) => {
                                                     Last Name
                                                 </label>
                                             </div>
-                                                  <div className="relative">
+                                                           <div className="relative">
                                                 <input
                                                     id="username"
                                                     name="username"
                                                     type="text"
-                                                    placeholder={user.username}
                                                     onChange={(e) =>
-                                                        setUsername(
-                                                            e.target.value
-                                                        )
+                                                        setUsername(e.target.value)
                                                     }
                                                     className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                    placeholder={user.username}
                                                 />
                                                 <label
-                                                    htmlFor="firstName"
+                                                    htmlFor="username"
                                                     className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
                                                 >
                                                     Username
@@ -289,30 +280,26 @@ const EditUser = ({ user }) => {
                                                     Confirm Password
                                                 </label>
                                             </div>
-                                            <div className="relative grid grid-cols-2 content-center">
-                                                <div className="">
-                                                    <Boop
-                                                        rotation={"5"}
-                                                        timing={"200"}
+                                            <div className="relative">
+                                                <Boop
+                                                    rotation={"5"}
+                                                    timing={"200"}
+                                                >
+                                                    <Link
+                                                        onClick={handleSubmit}
+                                                        to={"/login"}
+                                                        type="submit"
+                                                        className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
                                                     >
-                                                        <Link
-                                                            onClick={
-                                                                handleSubmit
-                                                            }
-                                                            to={"/login"}
-                                                            type="submit"
-                                                            className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-2"
-                                                        >
-                                                            Submit
-                                                        </Link>
-                                                    </Boop>
-                                                </div>
+                                                        Submit
+                                                    </Link>
+                                                </Boop>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                                <DeleteUserButton user={user} />
                             </div>
+                                        <DeleteUserButton user={user}/>
                         </div>
                     </div>
                 </div>
@@ -321,4 +308,4 @@ const EditUser = ({ user }) => {
     );
 };
 
-export default EditUser;
+export default EditUserPage;
