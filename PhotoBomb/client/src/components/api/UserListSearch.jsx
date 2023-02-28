@@ -51,8 +51,7 @@ const UserListSearch = ({ user }) => {
                                       timing={"200"}
                                   >
                                       <Link
-                                          className=""
-                                          to={`/user/${user._id}`}
+                                          to={`/users/${user._id}`}
                                       >
                                           <li
                                               className=" flex text-blue-600 cursor-pointer"
@@ -75,7 +74,7 @@ const UserListSearch = ({ user }) => {
                                   >
                                       <Link
                                           className="cursor-pointer hover:text-blue-900"
-                                          to={`/user/${user._id}`}
+                                          to={`/users/${user._id}`}
                                       >
                                           <li
                                               className=" m-2 flex text-blue-500"

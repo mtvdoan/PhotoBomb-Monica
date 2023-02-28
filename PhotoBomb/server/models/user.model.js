@@ -64,6 +64,7 @@ UserSchema.pre("validate", function (next) {
 
 // SAVE ENCRYPTED PASSWORD
 UserSchema.pre("save", async function (next) {
+    console.log("userschema.pre")
     try {
         // hash the password, 10 times
         const hashedPassword = await bcrypt.hash(this.password, 10);

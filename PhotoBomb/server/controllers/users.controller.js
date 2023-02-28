@@ -117,15 +117,24 @@ module.exports = {
     },
 
     updateUser: (req, res) => {
-        User.findByIdAndUpdate(req.params.id, req.body, {new: true})
-            .then((updatedUser) => res.json({ updatedUser }))
-            .catch((err) =>
+        console.log("updateUserreq:",req);
+
+        console.log("updateUserres:",res);
+        User.findByIdAndUpdate(req.params.id , req.body, { new: true })
+            .then((e) => {
+                res.json(e);
+            })
+             .catch((err) =>
                 res.status(400).json({
                     message: "Something went wrong while updating.",
                     error: err,
                 })
             );
+            
+            
     },
+
+
 
     getLogged: async (req, res) => {
         try {
@@ -141,8 +150,8 @@ module.exports = {
         }
     },
 
-    deleteUser: (req, res) => {
-        User.findByIdAndDelete(req.params.id)
+    deleteUser: async (req, res) => {
+        User.findOneAndDelete(req.params.id)
             .then((deletedUser) => res.json({ deletedUser }))
             .catch((err) =>
                 res.status(400).json({

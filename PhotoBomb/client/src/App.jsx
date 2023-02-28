@@ -9,8 +9,7 @@ import AllUsersPage from "./components/Pages/AllUsersPage";
 import ViewUserPage from "./components/Pages/ViewUserPage";
 import { UserProvider } from "./context/UserContext";
 import LoggedInAsButton from "./components/Buttons/LoggedInAsButton";
-import EditUserPage from "./components/Pages/EditUserPage";
-import EditUserButton from "./components/Buttons/EditUserButton";
+import UpdateUserPage from "./components/Pages/UpdateUserPage";
 import DeleteUserButton from "./components/Buttons/DeleteUserButton";
 import SearchBar from './components/Buttons/SearchBar';
 import UserListSearch from './components/api/UserListSearch';
@@ -45,32 +44,20 @@ function App() {
                             setAuthorized={setAuthorized}
                         />
                         <Route
-                            path="/user/:id"
+                            path="/users/:id"
                             element={<ViewUserPage user={user} />}
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
                         <Route
-                            path="/EditUserButton"
-                            element={<EditUserButton user={user} />}
-                            authorized={authorized}
-                            setAuthorized={setAuthorized}
-                        />
-                        <Route
-                            path="/user/edit/:id"
-                            element={<EditUserPage user={user} />}
+                            path="/users/update/:id"
+                            element={<UpdateUserPage user={user} />}
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/LoggedInAsButton"
                             element={<LoggedInAsButton user={user} />}
-                            authorized={authorized}
-                            setAuthorized={setAuthorized}
-                        />
-                        <Route
-                            path="/DeleteUserButton"
-                            element={<DeleteUserButton user={user} />}
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
@@ -95,6 +82,12 @@ function App() {
                         <Route
                             path="/browsephotos"
                             element={<BrowsePhotosPage user={user} />}
+                            authorized={authorized}
+                            setAuthorized={setAuthorized}
+                        />
+                        <Route
+                            path="/DeleteUserButton"
+                            element={<DeleteUserButton user={user} />}
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />

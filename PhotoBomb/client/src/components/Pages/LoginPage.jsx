@@ -8,9 +8,10 @@ import bomb from "../../styles/images/bomb.png";
 import SearchBar from "../Buttons/SearchBar";
 const LoginPage = ({ setUser }) => {
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
     const handleSubmit = (e) => {
@@ -21,14 +22,16 @@ const LoginPage = ({ setUser }) => {
                 {
                     firstName,
                     lastName,
+                    username,
                     email,
                     password,
                 },
                 { withCredentials: true }
             )
             .then((res) => {
-                setUser(res.data.user);
                 console.log("user", res.data.user);
+                console.log('whatisres',res);
+                setUser(res.data.user);
                 console.log("user", res);
                 alert(
                     `Yay, ${res.data.user.firstName} has successfully logged in!`
@@ -180,9 +183,6 @@ const LoginPage = ({ setUser }) => {
                                                         timing={"200"}
                                                     >
                                                         <button
-                                                            onClick={
-                                                                handleSubmit
-                                                            }
                                                             type="submit"
                                                             className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
                                                         >

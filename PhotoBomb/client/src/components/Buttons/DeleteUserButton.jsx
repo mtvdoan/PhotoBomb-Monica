@@ -7,10 +7,10 @@ const DeleteUserButton = ({ user }) => {
     console.log("What is my user id?", user._id);
     const userId = user._id;
     console.log("ideee", userId);
-    const handleDeleteUser = (e) => {
+    const handleDeleteUser = (e, userId) => {
         e.preventDefault();
         axios
-            .delete("http://localhost:8000/api/users/delete/" + userId)
+            .delete("http://localhost:8000/api/users/delete/" + user.id)
             .then(() => {
                 console.log("Successfully deleted user from backend");
                 removeFromDom(userId);
@@ -33,6 +33,7 @@ const DeleteUserButton = ({ user }) => {
             <div>
                 <div>
                     <button
+                        type="submit"
                         onClick={handleDeleteUser}
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hover:animate-pulse"
                     >

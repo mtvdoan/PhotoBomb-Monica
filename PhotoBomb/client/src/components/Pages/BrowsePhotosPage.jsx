@@ -8,7 +8,6 @@ import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
-import EditUserButton from "../Buttons/EditUserButton";
 
 const PhotoSearch = ({ user }) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -93,7 +92,6 @@ const PhotoSearch = ({ user }) => {
                         </ul>
                         <div className="flex">
                             <LoggedInAsButton user={user} />
-                            <EditUserButton user={user} />
                             <div className="flex">
                                 <div>
                                     <span className="flex">
@@ -109,6 +107,9 @@ const PhotoSearch = ({ user }) => {
                                     </span>
                                 </div>
                             </div>
+                               <Link to={`/users/update/${user._id}`} className="m-2 whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white">
+                                    Update User
+                                </Link>
                             <Link
                                 className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"
                                 to={"/TestConfirmPage"}

@@ -8,7 +8,6 @@ import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
-import EditUserButton from "../Buttons/EditUserButton";
 import SearchBar from "../Buttons/SearchBar";
 import UserListSearch from "../api/UserListSearch";
 const AllUsersPage = ({ user }) => {
@@ -16,7 +15,6 @@ const AllUsersPage = ({ user }) => {
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
     const [authorized, setAuthorized] = useState("");
-   
 
     useEffect(() => {
         axios
@@ -38,7 +36,10 @@ const AllUsersPage = ({ user }) => {
         <>
             <div>
                 <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class=" flex items-center justify-center m-auto " style={{}}>
+                    <div
+                        class=" flex items-center justify-center m-auto "
+                        style={{}}
+                    >
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -88,7 +89,9 @@ const AllUsersPage = ({ user }) => {
                             </ul>
                             <div className="flex">
                                 <LoggedInAsButton user={user} />
-                                <EditUserButton user={user}/>
+                                <Link to={`/users/update/${user._id}`} className="m-2 whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white">
+                                    Update User
+                                </Link>
 
                                 <Link
                                     className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"

@@ -10,17 +10,18 @@ import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import DeleteUserButton from "../Buttons/DeleteUserButton";
 
-const EditUserPage = ({ user }) => {
+const UpdateUserPage = ({ user }) => {
     const { id } = useParams();
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [firstName, setFirstName] = useState(user.firstName);
+    const [lastName, setLastName] = useState(user.lastName);
+    const [username, setUsername] = useState(user.username);
+    const [email, setEmail] = useState(user.email);
+    // const [password, setPassword] = useState(user.password);
+    // const [confirmPassword, setConfirmPassword] = useState(user.confirmPassword);
     const [createdAt] = useState(Date());
     const [updatedAt] = useState(Date());
     const [errors, setErrors] = useState("");
+    // const [usersList, setUsersList] = useState("");
     const navigate = useNavigate();
 
     // const {UserContext} = useContext(UserContext);
@@ -35,24 +36,25 @@ const EditUserPage = ({ user }) => {
                     lastName,
                     username,
                     email,
-                    password,
-                    confirmPassword,
-                    createdAt,
-                    updatedAt,
+                    // password,
+                    // confirmPassword,
+                    // createdAt,
+                    // updatedAt,
                 },
                 { withCredentials: true }
             )
             .then((res) => {
-                console.log("updated user", res.data.user);
+                console.log("updated user-res", res);
+
                 alert("Thanks for updating!");
                 navigate("/users");
             })
-            .catch((res) => {
-                setErrors(res.response.data.errors);
-                console.log(res.response.data.errors);
+            .catch((err) => {
+                console.log("res", err);
+                setErrors(err.response.data.errors);
+                console.log(err.response.data.errors);
             });
     };
-
     return (
         <>
             <div>
@@ -103,7 +105,7 @@ const EditUserPage = ({ user }) => {
                                 </li>
                             </ul>
                             <div className="flex">
-                                <LoggedInAsButton user={user} />
+                                <LoggedInAsButton user={user}/>
                                 <div>
                                     <span className="flex">
                                         <Boop rotation={"5"} timing={"200"}>
@@ -165,9 +167,7 @@ const EditUserPage = ({ user }) => {
                                                         id="firstName"
                                                         name="firstName"
                                                         type="text"
-                                                        placeholder={
-                                                            user.firstName
-                                                        }
+                                                        value={firstName}
                                                         onChange={(e) =>
                                                             setFirstName(
                                                                 e.target.value
@@ -193,8 +193,7 @@ const EditUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder={
-                                                            user.lastName
+                                                        value={lastName
                                                         }
                                                     />
                                                     <label
@@ -215,9 +214,7 @@ const EditUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder={
-                                                            user.username
-                                                        }
+                                                        value={username}
                                                     />
                                                     <label
                                                         htmlFor="username"
@@ -237,7 +234,7 @@ const EditUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder={user.email}
+                                                        value={email}
                                                     />
                                                     <label
                                                         htmlFor="email"
@@ -246,7 +243,7 @@ const EditUserPage = ({ user }) => {
                                                         Email Address
                                                     </label>
                                                 </div>
-                                                <div className="relative">
+                                                {/* <div className="relative">
                                                     <input
                                                         id="password"
                                                         name="password"
@@ -257,9 +254,7 @@ const EditUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder={
-                                                            user.password
-                                                        }
+                                                        value={password}
                                                     />
                                                     <label
                                                         htmlFor="password"
@@ -279,9 +274,7 @@ const EditUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        placeholder={
-                                                            user.confirmPassword
-                                                        }
+                                                        value={confirmPassword}
                                                     />
                                                     <label
                                                         htmlFor="confirmPassword"
@@ -289,7 +282,7 @@ const EditUserPage = ({ user }) => {
                                                     >
                                                         Confirm Password
                                                     </label>
-                                                </div>
+                                                </div> */}
                                                 <div className="relative">
                                                     <Boop
                                                         rotation={"5"}
@@ -299,7 +292,7 @@ const EditUserPage = ({ user }) => {
                                                             type="submit"
                                                             className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
                                                         >
-                                                            Submit
+                                                            Update User
                                                         </button>
                                                     </Boop>
                                                 </div>
@@ -308,7 +301,7 @@ const EditUserPage = ({ user }) => {
                                     </form>
                                 </div>
                             </div>
-
+                                    {/* <DeleteUserButton/> */}
                         </div>
                     </div>
                 </div>
@@ -317,4 +310,4 @@ const EditUserPage = ({ user }) => {
     );
 };
 
-export default EditUserPage;
+export default UpdateUserPage;
