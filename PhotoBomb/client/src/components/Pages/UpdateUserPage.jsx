@@ -301,7 +301,7 @@ const UpdateUserPage = ({ user }) => {
                                     </form>
                                 </div>
                             </div>
-                                    {/* <DeleteUserButton/> */}
+                                    <DeleteUserButton user={user}/>
                         </div>
                     </div>
                 </div>
