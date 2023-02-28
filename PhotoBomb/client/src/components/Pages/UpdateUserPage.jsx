@@ -22,6 +22,8 @@ const UpdateUserPage = ({ user }) => {
     const [updatedAt] = useState(Date());
     const [errors, setErrors] = useState("");
     // const [usersList, setUsersList] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
     const navigate = useNavigate();
 
     // const {UserContext} = useContext(UserContext);
@@ -45,9 +47,7 @@ const UpdateUserPage = ({ user }) => {
             )
             .then((res) => {
                 console.log("updated user-res", res);
-
-                alert("Thanks for updating!");
-                navigate("/users");
+                setIsSubmitted((value) => !value);
             })
             .catch((err) => {
                 console.log("res", err);
@@ -55,6 +55,12 @@ const UpdateUserPage = ({ user }) => {
                 console.log(err.response.data.errors);
             });
     };
+    useEffect(() => {
+        if (isSubmitted === true) {
+            alert("User has been updated.");
+            navigate("/users");
+        }
+    }, [isSubmitted]);
     return (
         <>
             <div>
@@ -105,7 +111,7 @@ const UpdateUserPage = ({ user }) => {
                                 </li>
                             </ul>
                             <div className="flex">
-                                <LoggedInAsButton user={user}/>
+                                <LoggedInAsButton user={user} />
                                 <div>
                                     <span className="flex">
                                         <Boop rotation={"5"} timing={"200"}>
@@ -186,6 +192,7 @@ const UpdateUserPage = ({ user }) => {
                                                     <input
                                                         id="lastName"
                                                         name="lastName"
+                                                        autoFocus
                                                         type="text"
                                                         onChange={(e) =>
                                                             setLastName(
@@ -193,8 +200,7 @@ const UpdateUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        value={lastName
-                                                        }
+                                                        value={lastName}
                                                     />
                                                     <label
                                                         htmlFor="lastName"
@@ -207,6 +213,8 @@ const UpdateUserPage = ({ user }) => {
                                                     <input
                                                         id="username"
                                                         name="username"
+                                                        key={user.id}
+                                                        autoFocus="autoFocus"
                                                         type="text"
                                                         onChange={(e) =>
                                                             setUsername(
@@ -301,7 +309,7 @@ const UpdateUserPage = ({ user }) => {
                                     </form>
                                 </div>
                             </div>
-                                    <DeleteUserButton user={user}/>
+                        <DeleteUserButton user={user}/>
                         </div>
                     </div>
                 </div>
