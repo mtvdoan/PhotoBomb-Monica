@@ -16,7 +16,6 @@ const LoggedInAsButton = ({ user }) => {
                 console.log("RES!", res.data);
                 console.log(user);
                 setUsersList(res.data);
-                console.log();
             })
             .catch((err) => {
                 console.log(err);

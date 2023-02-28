@@ -16,7 +16,7 @@ const AllUsersPage = ({ user }) => {
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
     const [authorized, setAuthorized] = useState("");
-    console.log("authorized", authorized);
+   
 
     useEffect(() => {
         axios
@@ -38,7 +38,7 @@ const AllUsersPage = ({ user }) => {
         <>
             <div>
                 <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class="container flex items-center justify-center mx-auto ">
+                    <div class=" flex items-center justify-center m-auto " style={{}}>
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -63,19 +63,19 @@ const AllUsersPage = ({ user }) => {
                                 <li>
                                     <a
                                         href="_#"
-                                        className="text-3xl block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                        class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                         aria-current="page"
                                     >
                                         Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="_#"
-                                        class="block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                    <Link
+                                        to={"/browsephotos"}
+                                        class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
-                                        {/* About */}
-                                    </a>
+                                        Browse Photos
+                                    </Link>
                                 </li>
                                 <li>
                                     <a
@@ -88,8 +88,14 @@ const AllUsersPage = ({ user }) => {
                             </ul>
                             <div className="flex">
                                 <LoggedInAsButton user={user} />
-                                <EditUserButton user={user} />
-                                <Link className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2" to={"/TestConfirmPage"}>Go Back To Test Page</Link>
+                                <EditUserButton user={user}/>
+
+                                <Link
+                                    className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"
+                                    to={"/TestConfirmPage"}
+                                >
+                                    Go Back To Test Page
+                                </Link>
                             </div>
                             <LogoutButton />
                         </div>
@@ -97,7 +103,10 @@ const AllUsersPage = ({ user }) => {
                 </nav>
                 <div>
                     <div className="min-h-screen bg-gray-100 py-auto flex flex-col justify-center lg:py-56 mt-30 ">
-                        <div className="relative py-3 sm:max-w-auto sm:mx-auto" style={{width:"800px"}}>
+                        <div
+                            className="relative py-3 sm:max-w-auto sm:mx-auto"
+                            style={{ width: "800px" }}
+                        >
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                             <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                                 <div className="max-w-xl mx-auto">

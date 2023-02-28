@@ -4,9 +4,13 @@ import SearchBar from "../Buttons/SearchBar";
 import React, { useState, useEffect } from "react";
 import UserListSearch from "../api/UserListSearch";
 import PokemonSearch from "../api/PokemonSearch";
+// import BrowsePhotoPage from "./BrowsePhotosPage";
 const TestConfirmPage = ({ user }) => {
     return (
         <>
+                {/* <div>
+                    <BrowsePhotoPage />
+                </div> */}
             <div>
                 <div className="flex text-3xl text-left font-extrabold grid grid-rows-12 content-center flex justify-center">
                     <h2>
@@ -26,15 +30,20 @@ const TestConfirmPage = ({ user }) => {
                     </button>
                 </div>
             </div>
-            <div className="flex grid grid-cols-2 content-center">
-                <UserListSearch />
+            <div className="flex grid grid-cols-3 content-center">
                 <div>
-                <h1 className="whitespace-normal text-center w-96 font-bold text-blue-900">Created a search bar filter for an existing api like Pokemon just to test out how to retrieve images.  Will use for reference.
-                </h1>
-                <PokemonSearch />
+                    <UserListSearch />
                 </div>
+                <div>
+                    <h1 className="whitespace-normal text-center w-96 font-bold text-blue-900">
+                        Created a search bar filter for an existing api like
+                        Pokemon just to test out how to retrieve images. Will
+                        use for reference.
+                    </h1>
+                    <PokemonSearch />
+                </div>
+                <br />
             </div>
-            
         </>
     );
 };

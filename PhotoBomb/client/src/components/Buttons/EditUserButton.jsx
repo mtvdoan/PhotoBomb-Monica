@@ -7,8 +7,8 @@ const EditUserButton = ({ user }) => {
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
-    const [authorized, setAuthorized] = useState("");
-    console.log("authorized", authorized);
+    // const [authorized, setAuthorized] = useState("");
+    // console.log("authorized", authorized);
 
     useEffect(() => {
         axios

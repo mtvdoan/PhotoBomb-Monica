@@ -14,8 +14,8 @@ const EditUserPage = ({ user }) => {
     const { id } = useParams();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [createdAt] = useState(Date());
@@ -26,13 +26,14 @@ const EditUserPage = ({ user }) => {
     // const {UserContext} = useContext(UserContext);
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("register form");
+        console.log("EDIT USER");
         axios
             .put(
                 "http://localhost:8000/api/users/update/" + id,
                 {
                     firstName,
                     lastName,
+                    username,
                     email,
                     password,
                     confirmPassword,
@@ -55,9 +56,8 @@ const EditUserPage = ({ user }) => {
     return (
         <>
             <div>
-                <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-
-                    <div class="container flex flex-wrap items-center justify-center mx-auto">
+                <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+                    <div className="flex flex-wrap items-center justify-center mx-auto">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -75,31 +75,28 @@ const EditUserPage = ({ user }) => {
                         </Boop>
 
                         <div
-                            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                             id="navbar-sticky"
                         >
-                            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                            <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                                 <li>
                                     <a
                                         href="_#"
-                                        className="text-3xl block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                                        className=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                         aria-current="page"
                                     >
                                         Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="_#"
-                                        class="block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                    >
-                                        {/* About */}
-                                    </a>
+                                    <Link className=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                                        Browse Photos
+                                    </Link>
                                 </li>
                                 <li>
                                     <a
                                         href="_#"
-                                        class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                        className="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         Creators
                                     </a>
@@ -135,171 +132,183 @@ const EditUserPage = ({ user }) => {
                                         Edit User: {user.email}
                                     </h1>
                                 </div>
-                                <form onSubmit={handleSubmit}>
-                                    <div className="animate-bounce text-red-600">
-                                        {errors.firstName && (
-                                            <p className="accent">
-                                                {errors.firstName.message}
-                                            </p>
-                                        )}
+                                <div>
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="animate-bounce text-red-600">
+                                            {errors.firstName && (
+                                                <p className="accent">
+                                                    {errors.firstName.message}
+                                                </p>
+                                            )}
 
-                                        {errors.lastName && (
-                                            <p className="accent">
-                                                {errors.lastName.message}
-                                            </p>
-                                        )}
+                                            {errors.lastName && (
+                                                <p className="accent">
+                                                    {errors.lastName.message}
+                                                </p>
+                                            )}
 
-                                        {errors.email && (
-                                            <p className="accent">
-                                                {errors.email.message}
-                                            </p>
-                                        )}
-                                                 {errors.username && (
-                                            <p className="accent">
-                                                {errors.username.message}
-                                            </p>
-                                        )}
-                                    </div>
-                                    <div className="divide-y divide-gray-200">
-                                        <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                            <div className="relative">
-                                                <input
-                                                    id="firstName"
-                                                    name="firstName"
-                                                    type="text"
-                                                    placeholder={user.firstName}
-                                                    onChange={(e) =>
-                                                        setFirstName(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                />
-                                                <label
-                                                    htmlFor="firstName"
-                                                    className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                >
-                                                    First Name
-                                                </label>
-                                            </div>
-                                            <div className="relative">
-                                                <input
-                                                    id="lastName"
-                                                    name="lastName"
-                                                    type="text"
-                                                    onChange={(e) =>
-                                                        setLastName(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                    placeholder={user.lastName}
-                                                />
-                                                <label
-                                                    htmlFor="lastName"
-                                                    className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                >
-                                                    Last Name
-                                                </label>
-                                            </div>
-                                                           <div className="relative">
-                                                <input
-                                                    id="username"
-                                                    name="username"
-                                                    type="text"
-                                                    onChange={(e) =>
-                                                        setUsername(e.target.value)
-                                                    }
-                                                    className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                    placeholder={user.username}
-                                                />
-                                                <label
-                                                    htmlFor="username"
-                                                    className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                >
-                                                    Username
-                                                </label>
-                                            </div>
-                                            <div className="relative">
-                                                <input
-                                                    id="email"
-                                                    name="email"
-                                                    type="text"
-                                                    onChange={(e) =>
-                                                        setEmail(e.target.value)
-                                                    }
-                                                    className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                    placeholder={user.email}
-                                                />
-                                                <label
-                                                    htmlFor="email"
-                                                    className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                >
-                                                    Email Address
-                                                </label>
-                                            </div>
-                                            <div className="relative">
-                                                <input
-                                                    id="password"
-                                                    name="password"
-                                                    type="password"
-                                                    onChange={(e) =>
-                                                        setPassword(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                    placeholder={user.password}
-                                                />
-                                                <label
-                                                    htmlFor="password"
-                                                    className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                >
-                                                    Password
-                                                </label>
-                                            </div>
-                                            <div className="relative">
-                                                <input
-                                                    id="confirmPassword"
-                                                    name="confirmPassword"
-                                                    type="password"
-                                                    onChange={(e) =>
-                                                        setConfirmPassword(
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                    placeholder={
-                                                        user.confirmPassword
-                                                    }
-                                                />
-                                                <label
-                                                    htmlFor="confirmPassword"
-                                                    className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                >
-                                                    Confirm Password
-                                                </label>
-                                            </div>
-                                            <div className="relative">
-                                                <Boop
-                                                    rotation={"5"}
-                                                    timing={"200"}
-                                                >
-                                                    <Link
-                                                        onClick={handleSubmit}
-                                                        to={"/login"}
-                                                        type="submit"
-                                                        className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
+                                            {errors.email && (
+                                                <p className="accent">
+                                                    {errors.email.message}
+                                                </p>
+                                            )}
+                                            {errors.username && (
+                                                <p className="accent">
+                                                    {errors.username.message}
+                                                </p>
+                                            )}
+                                        </div>
+                                        <div className="divide-y divide-gray-200">
+                                            <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                                                <div className="relative">
+                                                    <input
+                                                        id="firstName"
+                                                        name="firstName"
+                                                        type="text"
+                                                        placeholder={
+                                                            user.firstName
+                                                        }
+                                                        onChange={(e) =>
+                                                            setFirstName(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                    />
+                                                    <label
+                                                        htmlFor="firstName"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
                                                     >
-                                                        Submit
-                                                    </Link>
-                                                </Boop>
+                                                        First Name
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        id="lastName"
+                                                        name="lastName"
+                                                        type="text"
+                                                        onChange={(e) =>
+                                                            setLastName(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder={
+                                                            user.lastName
+                                                        }
+                                                    />
+                                                    <label
+                                                        htmlFor="lastName"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
+                                                    >
+                                                        Last Name
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        id="username"
+                                                        name="username"
+                                                        type="text"
+                                                        onChange={(e) =>
+                                                            setUsername(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder={
+                                                            user.username
+                                                        }
+                                                    />
+                                                    <label
+                                                        htmlFor="username"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
+                                                    >
+                                                        Username
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        id="email"
+                                                        name="email"
+                                                        type="text"
+                                                        onChange={(e) =>
+                                                            setEmail(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder={user.email}
+                                                    />
+                                                    <label
+                                                        htmlFor="email"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
+                                                    >
+                                                        Email Address
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        id="password"
+                                                        name="password"
+                                                        type="password"
+                                                        onChange={(e) =>
+                                                            setPassword(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder={
+                                                            user.password
+                                                        }
+                                                    />
+                                                    <label
+                                                        htmlFor="password"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
+                                                    >
+                                                        Password
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <input
+                                                        id="confirmPassword"
+                                                        name="confirmPassword"
+                                                        type="password"
+                                                        onChange={(e) =>
+                                                            setConfirmPassword(
+                                                                e.target.value
+                                                            )
+                                                        }
+                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
+                                                        placeholder={
+                                                            user.confirmPassword
+                                                        }
+                                                    />
+                                                    <label
+                                                        htmlFor="confirmPassword"
+                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
+                                                    >
+                                                        Confirm Password
+                                                    </label>
+                                                </div>
+                                                <div className="relative">
+                                                    <Boop
+                                                        rotation={"5"}
+                                                        timing={"200"}
+                                                    >
+                                                        <button
+                                                            type="submit"
+                                                            className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
+                                                        >
+                                                            Submit
+                                                        </button>
+                                                    </Boop>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-                                        <DeleteUserButton user={user}/>
+
                         </div>
                     </div>
                 </div>

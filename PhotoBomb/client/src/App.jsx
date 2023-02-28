@@ -14,6 +14,7 @@ import EditUserButton from "./components/Buttons/EditUserButton";
 import DeleteUserButton from "./components/Buttons/DeleteUserButton";
 import SearchBar from './components/Buttons/SearchBar';
 import UserListSearch from './components/api/UserListSearch';
+import BrowsePhotosPage  from "./components/Pages/BrowsePhotosPage";
 
 function App() {
     const [authorized, setAuthorized] = useState("");
@@ -88,6 +89,12 @@ function App() {
                         <Route
                             path="/UserListSearch"
                             element={<UserListSearch user={user} />}
+                            authorized={authorized}
+                            setAuthorized={setAuthorized}
+                        />
+                        <Route
+                            path="/browsephotos"
+                            element={<BrowsePhotosPage user={user} />}
                             authorized={authorized}
                             setAuthorized={setAuthorized}
                         />
