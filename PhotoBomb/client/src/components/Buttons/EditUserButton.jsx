@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Boop from "../../styles/Boop";
+import { UserContext } from "../../context/UserContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
-const EditUserButton = ({ user }) => {
+const EditUserButton = (props) => {
+    const { user } = useContext(UserContext);
     const { id } = useParams();
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");

@@ -1,19 +1,21 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { UserContext } from "../../context/UserContext";
+
 import { useNavigate, Link } from "react-router-dom";
 import Boop from "../../styles/Boop";
 const LogoutButton = (props) => {
+    const {setUser} = useContext(UserContext);
+
     const navigate = useNavigate();
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [user, setUser] = useState("");
-    // const {user, setUser} = useContext();
-    console.log(user);
+
     const handleLogOut = (e) => {
         e.preventDefault();
+        
         axios
-            .post("http://localhost:8000/api/users/logout")
+            .post("http://localhost:8000/api/users/logout",{}, {withCredentials: true})
             .then((res) => {
-                setLoggedIn(false);
+                setUser(null);
                 console.log(`Logging out!`);
                 alert("User has logged out!");
                 navigate("/login");

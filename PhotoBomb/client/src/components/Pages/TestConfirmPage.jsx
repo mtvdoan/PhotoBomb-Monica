@@ -1,14 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 import LogoutButton from "../Buttons/LogoutButton";
 import SearchBar from "../Buttons/SearchBar";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import UserListSearch from "../api/UserListSearch";
 import PokemonSearch from "../api/PokemonSearch";
 // import BrowsePhotoPage from "./BrowsePhotosPage";
-const TestConfirmPage = ({ user }) => {
+const TestConfirmPage = (props) => {
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (user.id === 0) {
+            props.setAuthorized("You have to be logged in to view that page");
+            alert(`You have to be logged in to view that page`);
+            navigate("/login");
+        }
+    }, []);
     return (
         <>
-                {/* <div>
+            {/* <div>
                     <BrowsePhotoPage />
                 </div> */}
             <div>
@@ -22,7 +32,7 @@ const TestConfirmPage = ({ user }) => {
                         in and navigated here.
                     </h4>
                     <h4 className="text-red-800">
-                        Current user logged in: {user.firstName}
+                        {/* Current user logged in: {user.firstName} */}
                     </h4>
                     <LogoutButton />
                     <button className=" hover:bg-blue-900 text-white cursor-pointer h-12 w-56 rounded-xl bg-blue-400">

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Boop from "../../styles/Boop";
+import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const LoggedInAsButton = ({ user }) => {
+const LoggedInAsButton = (props) => {
+    const { user } = useContext(UserContext);
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
-    const [authorized, setAuthorized] = useState("");
-    console.log("authorized", authorized);
 
     useEffect(() => {
         axios

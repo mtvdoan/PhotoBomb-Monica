@@ -10,12 +10,13 @@ import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import DeleteUserButton from "../Buttons/DeleteUserButton";
 
-const UpdateUserPage = ({ user }) => {
+const UpdateUserPage = (props) => {
     const { id } = useParams();
-    const [firstName, setFirstName] = useState(user.firstName);
-    const [lastName, setLastName] = useState(user.lastName);
-    const [username, setUsername] = useState(user.username);
-    const [email, setEmail] = useState(user.email);
+    const { user, setUser} = useContext(UserContext);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     // const [password, setPassword] = useState(user.password);
     // const [confirmPassword, setConfirmPassword] = useState(user.confirmPassword);
     const [createdAt] = useState(Date());
@@ -26,7 +27,15 @@ const UpdateUserPage = ({ user }) => {
 
     const navigate = useNavigate();
 
-    // const {UserContext} = useContext(UserContext);
+    useEffect(() => {
+        if (user.id === 0) {
+            props.setAuthorized("You have to be logged in to view this page");
+            alert("You need to be logged in to view this page");
+            console.log("testing unauth");
+            navigate("/login");
+        }
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("EDIT USER");
@@ -38,29 +47,38 @@ const UpdateUserPage = ({ user }) => {
                     lastName,
                     username,
                     email,
-                    // password,
-                    // confirmPassword,
-                    // createdAt,
-                    // updatedAt,
+                //     // password,
+                //     // confirmPassword,
+                //     // createdAt,
+                //     // updatedAt,
                 },
                 { withCredentials: true }
             )
             .then((res) => {
                 console.log("updated user-res", res);
-                setIsSubmitted((value) => !value);
+                // setUser({
+
+                //     username: res.user.username,
+                //     firstName: res.user.firstName,
+                //     lastName: res.user.lastName,
+                //     email: res.user.email,
+                // })
+                alert("User updated successfully!")
+                navigate("/users")
             })
             .catch((err) => {
-                console.log("res", err);
-                setErrors(err.response.data.errors);
-                console.log(err.response.data.errors);
+                console.log("WHATIS ERR", err);
+                setErrors(err.response.data.error.errors);
+                console.log("WHATIS ERR", errors);
+
             });
     };
-    useEffect(() => {
-        if (isSubmitted === true) {
-            alert("User has been updated.");
-            navigate("/users");
-        }
-    }, [isSubmitted]);
+    // useEffect(() => {
+    //     if (isSubmitted === true) {
+    //         alert("User has been updated.");
+    //         navigate("/users");
+    //     }
+    // }, [isSubmitted]);
     return (
         <>
             <div>
@@ -87,13 +105,14 @@ const UpdateUserPage = ({ user }) => {
                             id="navbar-sticky"
                         >
                             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                                <li>
+                <li>
                                     <a
                                         href="_#"
-                                        className=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                        aria-current="page"
+                                        class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
-                                        Home
+                                        <div className="m-2 whitespace-nowrap border p-2 m-auto bg-green-500 rounded-lg shadow-lg text-white">
+                                            @{user.username}
+                                        </div>
                                     </a>
                                 </li>
                                 <li>
@@ -111,7 +130,6 @@ const UpdateUserPage = ({ user }) => {
                                 </li>
                             </ul>
                             <div className="flex">
-                                <LoggedInAsButton user={user} />
                                 <div>
                                     <span className="flex">
                                         <Boop rotation={"5"} timing={"200"}>
@@ -173,7 +191,9 @@ const UpdateUserPage = ({ user }) => {
                                                         id="firstName"
                                                         name="firstName"
                                                         type="text"
-                                                        value={firstName}
+                                                        placeholder={
+                                                            user.firstName
+                                                        }
                                                         onChange={(e) =>
                                                             setFirstName(
                                                                 e.target.value
@@ -200,7 +220,9 @@ const UpdateUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        value={lastName}
+                                                        placeholder={
+                                                            user.lastName
+                                                        }
                                                     />
                                                     <label
                                                         htmlFor="lastName"
@@ -222,7 +244,9 @@ const UpdateUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        value={username}
+                                                        placeholder={
+                                                            user.username
+                                                        }
                                                     />
                                                     <label
                                                         htmlFor="username"
@@ -242,7 +266,7 @@ const UpdateUserPage = ({ user }) => {
                                                             )
                                                         }
                                                         className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        value={email}
+                                                        placeholder={user.email}
                                                     />
                                                     <label
                                                         htmlFor="email"
@@ -251,46 +275,6 @@ const UpdateUserPage = ({ user }) => {
                                                         Email Address
                                                     </label>
                                                 </div>
-                                                {/* <div className="relative">
-                                                    <input
-                                                        id="password"
-                                                        name="password"
-                                                        type="password"
-                                                        onChange={(e) =>
-                                                            setPassword(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        value={password}
-                                                    />
-                                                    <label
-                                                        htmlFor="password"
-                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                    >
-                                                        Password
-                                                    </label>
-                                                </div>
-                                                <div className="relative">
-                                                    <input
-                                                        id="confirmPassword"
-                                                        name="confirmPassword"
-                                                        type="password"
-                                                        onChange={(e) =>
-                                                            setConfirmPassword(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                        className="m-2 h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        value={confirmPassword}
-                                                    />
-                                                    <label
-                                                        htmlFor="confirmPassword"
-                                                        className="absolute left-4 -top-3.5 text-gray-600 text-sm text-sm"
-                                                    >
-                                                        Confirm Password
-                                                    </label>
-                                                </div> */}
                                                 <div className="relative">
                                                     <Boop
                                                         rotation={"5"}
@@ -309,7 +293,7 @@ const UpdateUserPage = ({ user }) => {
                                     </form>
                                 </div>
                             </div>
-                        <DeleteUserButton user={user}/>
+                            <DeleteUserButton user={user} />
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-// import UserContext from '../../context/UserContext';
+import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Boop from "../../styles/Boop";
@@ -8,20 +8,37 @@ import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import { faker } from "@faker-js/faker";
 import SearchBar from "../Buttons/SearchBar";
-const RegisterPage = ({ setUser }) => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [createdAt] = useState(Date());
-    const [updatedAt] = useState(Date());
+const RegisterPage = (props) => {
+    // const [firstName, setFirstName] = useState("");
+    // const [lastName, setLastName] = useState("");
+    // const [username, setUsername] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
+    // const [createdAt] = useState(Date());
+    // const [updatedAt] = useState(Date());
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
 
-    // const {UserContext} = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
 
+    const [state, setState] = useState({
+        register: {
+            firstName: "",
+            lastName: "",
+            username: "",
+            email: "",
+        },
+    });
+    const { register } = state;
+
+    const handleRegInputs = (e) => {
+        props.setAuthorized("");
+        setState({
+            ...state,
+            register: { ...state.register, [e.target.name]: e.target.value },
+        });
+    };
     // //FAKER USER GENERATOR:
     // useEffect(() => {
     //     const f = faker.name.firstName();
@@ -38,34 +55,30 @@ const RegisterPage = ({ setUser }) => {
     //     setPassword(p);
     //     setConfirmPassword(p);
     // }, []);
-
-    const handleSubmit = (e) => {
+    const handleRegistration = (e) => {
         e.preventDefault();
-        console.log("register form");
+
         axios
-            .post(
-                "http://localhost:8000/api/users/register",
-                {
-                    firstName,
-                    lastName,
-                    username,
-                    email,
-                    password,
-                    confirmPassword,
-                    createdAt,
-                    updatedAt,
-                },
-                { withCredentials: true }
-            )
+            .post("http://localhost:8000/api/users/register", register, {
+                withCredentials: true,
+            })
             .then((res) => {
-                console.log("registered user", res.data.user);
-                setUser(res.data.user);
-                alert("Thanks for registering. Please log in to get started!");
+                console.log(res);
+                setUser({
+                    id: res.data.user.id,
+                    username: res.data.user.username,
+                    firstName: res.data.user.firstName,
+                    lastName: res.data.user.lastName,
+                    email: res.data.user.email,
+                });
+                alert(
+                    "Thanks for registering.  Please sign in to get started."
+                );
                 navigate("/login");
             })
-            .catch((res) => {
-                setErrors(res.response.data.errors);
-                console.log(res.response.data.errors);
+            .catch((err) => {
+                console.log(err);
+                setErrors(err.response.data.errors);
             });
     };
     return (
@@ -162,7 +175,7 @@ const RegisterPage = ({ setUser }) => {
                                             Register
                                         </h1>
                                     </div>
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleRegistration}>
                                         <div className="animate-bounce text-red-600">
                                             {errors.firstName && (
                                                 <p className="accent">
@@ -204,11 +217,9 @@ const RegisterPage = ({ setUser }) => {
                                                         id="firstName"
                                                         name="firstName"
                                                         type="text"
-                                                        value={firstName}
-                                                        onChange={(e) =>
-                                                            setFirstName(
-                                                                e.target.value
-                                                            )
+                                                        // value={firstName}
+                                                        onChange={
+                                                            handleRegInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         // placeholder={randomFirstName}
@@ -226,13 +237,11 @@ const RegisterPage = ({ setUser }) => {
                                                         id="lastName"
                                                         name="lastName"
                                                         type="text"
-                                                        onChange={(e) =>
-                                                            setLastName(
-                                                                e.target.value
-                                                            )
+                                                        onChange={
+                                                            handleRegInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        value={lastName}
+                                                        // value={lastName}
                                                         // placeholder={randomLastName}
                                                     />
                                                     <label
@@ -248,14 +257,12 @@ const RegisterPage = ({ setUser }) => {
                                                         id="username"
                                                         name="username"
                                                         type="text"
-                                                        onChange={(e) =>
-                                                            setUsername(
-                                                                e.target.value
-                                                            )
+                                                        onChange={
+                                                            handleRegInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         // placeholder={lowercaseUserName}
-                                                        value={username}
+                                                        // value={username}
                                                     />
                                                     <label
                                                         htmlFor="username"
@@ -270,14 +277,12 @@ const RegisterPage = ({ setUser }) => {
                                                         id="email"
                                                         name="email"
                                                         type="text"
-                                                        onChange={(e) =>
-                                                            setEmail(
-                                                                e.target.value
-                                                            )
+                                                        onChange={
+                                                            handleRegInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         // placeholder={lowercaseRandomEmail}
-                                                        value={email}
+                                                        // value={email}
                                                     />
                                                     <label
                                                         htmlFor="email"
@@ -292,10 +297,8 @@ const RegisterPage = ({ setUser }) => {
                                                         id="password"
                                                         name="password"
                                                         type="password"
-                                                        onChange={(e) =>
-                                                            setPassword(
-                                                                e.target.value
-                                                            )
+                                                        onChange={
+                                                            handleRegInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         placeholder="Create Password"
@@ -314,10 +317,8 @@ const RegisterPage = ({ setUser }) => {
                                                         id="confirmPassword"
                                                         name="confirmPassword"
                                                         type="password"
-                                                        onChange={(e) =>
-                                                            setConfirmPassword(
-                                                                e.target.value
-                                                            )
+                                                        onChange={
+                                                            handleRegInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         placeholder="Confirm Password"
@@ -335,16 +336,9 @@ const RegisterPage = ({ setUser }) => {
                                                         rotation={"5"}
                                                         timing={"200"}
                                                     >
-                                                        <Link
-                                                            onClick={
-                                                                handleSubmit
-                                                            }
-                                                            to={"/login"}
-                                                            type="submit"
-                                                            className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
-                                                        >
-                                                            Submit
-                                                        </Link>
+                                                        <button className="m-4 border shadow-lg p-4 bg-green-500 hover:bg-green-900 text-xl font-extrabold text-white rounded-xl">
+                                                            Register
+                                                        </button>
                                                     </Boop>
                                                 </div>
                                             </div>

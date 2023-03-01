@@ -120,7 +120,7 @@ module.exports = {
         console.log("updateUserreq:",req);
 
         console.log("updateUserres:",res);
-        User.findByIdAndUpdate(req.params.id , req.body, { new: true })
+        User.findByIdAndUpdate(req.params.id , req.body, { new: true, runValidators: true })
             .then((e) => {
                 res.json(e);
             })

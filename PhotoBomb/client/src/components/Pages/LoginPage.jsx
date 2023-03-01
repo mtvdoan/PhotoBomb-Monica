@@ -1,12 +1,16 @@
 import React, { useState, useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import SearchBar from "../Buttons/SearchBar";
-const LoginPage = ({ setUser }) => {
+
+const LoginPage = (props) => {
+    const { setUser } = useContext(UserContext);
+
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -14,29 +18,40 @@ const LoginPage = ({ setUser }) => {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState("");
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
+
+    const [state, setState] = useState({
+        login: {
+            email: "",
+            password: "",
+        },
+    });
+
+    const { login } = state;
+    const handleLoginInputs = (e) => {
+        props.setAuthorized("");
+        setState({
+            ...state,
+            login: { ...state.login, [e.target.name]: e.target.value },
+        });
+    };
+
+    const handleLogin = (e) => {
         e.preventDefault();
         axios
-            .post(
-                "http://localhost:8000/api/users/login",
-                {
-                    firstName,
-                    lastName,
-                    username,
-                    email,
-                    password,
-                },
-                { withCredentials: true }
-            )
+            .post("http://localhost:8000/api/users/login", login, {
+                withCredentials: true,
+            })
             .then((res) => {
-                console.log("user", res.data.user);
-                console.log('whatisres',res);
-                setUser(res.data.user);
-                console.log("user", res);
-                alert(
-                    `Yay, ${res.data.user.firstName} has successfully logged in!`
-                );
-                navigate("/TestConfirmPage");
+                console.log("WHHHHHHHAAAT", res);
+                setUser({
+                    id: res.data.user._id,
+                    username: res.data.user.username,
+                    email: res.data.user.email,
+                    firstName: res.data.user.firstName,
+                    lastName: res.data.user.lastName,
+                });
+                alert("Thanks for loggin in.");
+                navigate("/users");
             })
             .catch((err) => {
                 console.log(err);
@@ -90,7 +105,10 @@ const LoginPage = ({ setUser }) => {
                                     </a>
                                 </li>
                                 <li>
-                                    <Link to={"/browsephotos"} class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                                    <Link
+                                        to={"/browsephotos"}
+                                        class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                    >
                                         Browse Photos
                                     </Link>
                                 </li>
@@ -125,7 +143,7 @@ const LoginPage = ({ setUser }) => {
                                             Login
                                         </h1>
                                     </div>
-                                    <form onSubmit={handleSubmit}>
+                                    <form onSubmit={handleLogin}>
                                         <p className="animate-bounce text-red-600">
                                             {errors && (
                                                 <span className="accent">
@@ -141,10 +159,8 @@ const LoginPage = ({ setUser }) => {
                                                         id="email"
                                                         name="email"
                                                         type="text"
-                                                        onChange={(e) =>
-                                                            setEmail(
-                                                                e.target.value
-                                                            )
+                                                        onChange={
+                                                            handleLoginInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         placeholder="Email address"
@@ -162,10 +178,8 @@ const LoginPage = ({ setUser }) => {
                                                         id="password"
                                                         name="password"
                                                         type="password"
-                                                        onChange={(e) =>
-                                                            setPassword(
-                                                                e.target.value
-                                                            )
+                                                        onChange={
+                                                            handleLoginInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                         placeholder="Password"
@@ -186,7 +200,7 @@ const LoginPage = ({ setUser }) => {
                                                             type="submit"
                                                             className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
                                                         >
-                                                            Submit
+                                                            Login
                                                         </button>
                                                     </Boop>
                                                 </div>

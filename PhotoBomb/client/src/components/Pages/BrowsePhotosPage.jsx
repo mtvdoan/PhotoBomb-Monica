@@ -2,20 +2,29 @@
 //I'll probably use this to search photos.
 
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import {UserContext} from "../../context/UserContext";
+import { Link, useNavigate } from "react-router-dom";
 import Boop from "../../styles/Boop";
 import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 
-const PhotoSearch = ({ user }) => {
+const PhotoSearch = (props) => {
+    const { user } = useContext(UserContext);
     const [searchTerm, setSearchTerm] = useState("");
     const [width, setWidth] = useState("");
     const [height, setHeight] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [isSearchClicked, setIsSearchClicked] = useState(false);
-
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (user.id === 0) {
+            props.setAuthorized("You have to be logged in to view this page");
+            alert("You have to be logged in to view this page");
+            navigate("/login");
+        }
+    }, []);
     const handleChange = (event) => {
         event.preventDefault();
         const value = event.target.value;
@@ -91,7 +100,6 @@ const PhotoSearch = ({ user }) => {
                             </li>
                         </ul>
                         <div className="flex">
-                            <LoggedInAsButton user={user} />
                             <div className="flex">
                                 <div>
                                     <span className="flex">
@@ -107,9 +115,12 @@ const PhotoSearch = ({ user }) => {
                                     </span>
                                 </div>
                             </div>
-                               <Link to={`/users/update/${user._id}`} className="m-2 whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white">
-                                    Update User
-                                </Link>
+                            <Link
+                                to={`/users/update/${user._id}`}
+                                className="m-2 whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white"
+                            >
+                                Update User
+                            </Link>
                             <Link
                                 className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"
                                 to={"/TestConfirmPage"}
