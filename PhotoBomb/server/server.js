@@ -1,25 +1,29 @@
-//Dependencies
-const express = require("express"); 
-const cors = require("cors");
-const app = express();
-const cors = require('cors')
-const cookieParser = require('cookie-parser');
-const dotenv = require('dotenv');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const port = 8000;
+//Read Environment Variables
+require("dotenv").config();
 
-//Middleware
+// Express: js framework - interface to Node Server
+const express = require("express");
+const app = express();
+
+// Cors Cross-Origin Request
+const cors = require("cors");
+
+// Middleware for Cookies
+const cookieParser = require("cookie-parser");
+const PORT = 8000;
+
+//Middleware for Node.js and Express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({
-    origin:"http://localhost:3000"
-}));
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cookieParser());
 
-//Requires
+// Connect to Mongoose and Routes
 require("./config/mongoose.config");
-require("./routes/SOMETHING.routes")(app);  //Need to edit 'SOMETHING' with real name. lol
+require("./routes/users.routes")(app);
 
+//App Listening to PORT
+app.listen(PORT, () => console.log(`Party on port: ${PORT}`));
 
-//Listen Method
-app.listen(port, ()=>console.log("Listening on port:", port))             
+// LOGIN REG INSTALL
+// npm install bcrypt dotenv cookie-parser jsonwebtoken
