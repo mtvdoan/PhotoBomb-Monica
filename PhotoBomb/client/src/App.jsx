@@ -13,16 +13,11 @@ import UpdateUserPage from "./components/Pages/UpdateUserPage";
 import DeleteUserButton from "./components/Buttons/DeleteUserButton";
 import SearchBar from "./components/Buttons/SearchBar";
 import UserListSearch from "./components/api/UserListSearch";
-import BrowsePhotosPage from "./components/Pages/BrowsePhotosPage";
+import InspirationPhotoSearch from "./components/Pages/InspirationPhotoSearch";
 import LogoutButton from "./components/Buttons/LogoutButton";
 
 function App() {
     const [authorized, setAuthorized] = useState("");
-    // const [user, setUser] = useState({});
-    // const [jwt, setJwt] = useState("", "jwt");
-    // useEffect(() => {
-    //     console.log(`JWT IS: ${jwt}`);
-    // }, [jwt]);
 
     return (
         <>
@@ -38,10 +33,6 @@ function App() {
                                     setAuthorized={setAuthorized}
                                 />
                             }
-                            // element={<RegisterPage setUser={setUser} />}
-
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/login"
@@ -63,39 +54,27 @@ function App() {
                                     setAuthorized={setAuthorized}
                                 />
                             }
-                            // element={<LoginPage setUser={setUser} />}
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/users"
                             element={
                                 <AllUsersPage setAuthorized={setAuthorized} />
-                                // <RequireAuth>
-                                //     <AllUsersPage />
-                                // </RequireAuth>
                             }
-                            // element={<AllUsersPage user={user} />}
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/users/:id"
                             element={
                                 <ViewUserPage setAuthorized={setAuthorized} />
                             }
-                            // element={<ViewUserPage user={user} />}
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/users/update/:id"
                             element={
-                                <UpdateUserPage  authorized={authorized} setAuthorized={setAuthorized} />
+                                <UpdateUserPage
+                                    authorized={authorized}
+                                    setAuthorized={setAuthorized}
+                                />
                             }
-                            // element={<UpdateUserPage user={user} />}
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/LoggedInAsButton"
@@ -104,18 +83,12 @@ function App() {
                                     setAuthorized={setAuthorized}
                                 />
                             }
-                            // element={<LoggedInAsButton user={user} />}
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/SearchBar"
                             element={
                                 <SearchBar setAuthorized={setAuthorized} />
                             }
-                            // element={<SearchBar user={user} />}
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/testConfirmPage"
@@ -124,27 +97,20 @@ function App() {
                                     setAuthorized={setAuthorized}
                                 />
                             }
-                            // element={<TestConfirmPage user={user} />}
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/UserListSearch"
                             element={
                                 <UserListSearch setAuthorized={setAuthorized} />
                             }
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/browsephotos"
                             element={
-                                <BrowsePhotosPage
+                                <InspirationPhotoSearch
                                     setAuthorized={setAuthorized}
                                 />
                             }
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                         <Route
                             path="/DeleteUserButton"
@@ -153,8 +119,6 @@ function App() {
                                     setAuthorized={setAuthorized}
                                 />
                             }
-                            // authorized={authorized}
-                            // setAuthorized={setAuthorized}
                         />
                     </Routes>
                 </UserProvider>
@@ -164,3 +128,4 @@ function App() {
 }
 
 export default App;
+

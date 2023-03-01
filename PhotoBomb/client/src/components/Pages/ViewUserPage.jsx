@@ -9,7 +9,7 @@ import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import EditUserButton from "../Buttons/EditUserButton";
-import SearchBar from "../Buttons/SearchBar";
+
 const ViewUserPage = (props) => {
     const { user } = useContext(UserContext);
     const { id } = useParams();
@@ -61,16 +61,16 @@ const ViewUserPage = (props) => {
                                 id="navbar-sticky"
                             >
                                 <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                                <li>
-                                    <a
-                                        href="_#"
-                                        class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                    >
-                                        <div className="m-2 whitespace-nowrap border p-2 m-auto bg-green-500 rounded-lg shadow-lg text-white">
-                                            @{user.username}
-                                        </div>
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a
+                                            href="_#"
+                                            class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                        >
+                                            <div className="m-2 whitespace-nowrap border p-2 m-auto bg-green-500 rounded-lg shadow-lg text-white">
+                                                @{user.username}
+                                            </div>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a
                                             href="_#"
@@ -98,12 +98,12 @@ const ViewUserPage = (props) => {
                                 </ul>
                                 <div>
                                     <span className="flex">
-                                <Link
-                                    to={`/users/update/${user.id}`}
-                                    className="m-2 whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white"
-                                >
-                                    Update User
-                                </Link>
+                                        <Link
+                                            to={`/users/update/${user.id}`}
+                                            className="m-2 whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white"
+                                        >
+                                            Update User
+                                        </Link>
                                         <Boop rotation={"5"} timing={"200"}>
                                             <div className="flex bg-blue-500 hover:bg-blue-600 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
                                                 <div className="cursor-pointer mr-2 text-white text-lg shadow-lg">
@@ -115,13 +115,12 @@ const ViewUserPage = (props) => {
                                         </Boop>
                                     </span>
                                 </div>
-                                <Link
+                                {/* <Link
                                     className="m-2 border w-24 border-black rounded-lg text-center bg-blue-200 p-2"
                                     to={"/TestConfirmPage"}
                                 >
                                     Go Back To Test Page
-                                </Link>
-
+                                </Link> */}
                                 <LogoutButton />
                             </div>
                         </div>

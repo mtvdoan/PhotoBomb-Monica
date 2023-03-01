@@ -7,7 +7,7 @@ import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import { faker } from "@faker-js/faker";
-import SearchBar from "../Buttons/SearchBar";
+
 const RegisterPage = (props) => {
     // const [firstName, setFirstName] = useState("");
     // const [lastName, setLastName] = useState("");
@@ -17,11 +17,8 @@ const RegisterPage = (props) => {
     // const [confirmPassword, setConfirmPassword] = useState("");
     // const [createdAt] = useState(Date());
     // const [updatedAt] = useState(Date());
-    const [errors, setErrors] = useState("");
-    const navigate = useNavigate();
 
-    const { setUser } = useContext(UserContext);
-
+    //Same as above...
     const [state, setState] = useState({
         register: {
             firstName: "",
@@ -30,6 +27,9 @@ const RegisterPage = (props) => {
             email: "",
         },
     });
+    const [errors, setErrors] = useState("");
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
     const { register } = state;
 
     const handleRegInputs = (e) => {
@@ -39,7 +39,8 @@ const RegisterPage = (props) => {
             register: { ...state.register, [e.target.name]: e.target.value },
         });
     };
-    // //FAKER USER GENERATOR:
+
+    //FAKER USER GENERATOR:
     // useEffect(() => {
     //     const f = faker.name.firstName();
     //     const l = faker.name.lastName();
@@ -55,9 +56,9 @@ const RegisterPage = (props) => {
     //     setPassword(p);
     //     setConfirmPassword(p);
     // }, []);
+
     const handleRegistration = (e) => {
         e.preventDefault();
-
         axios
             .post("http://localhost:8000/api/users/register", register, {
                 withCredentials: true,
@@ -107,7 +108,7 @@ const RegisterPage = (props) => {
                             id="navbar-sticky"
                         >
                             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                                <li>
+                                {/* <li>
                                     <a
                                         href="_#"
                                         class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -131,7 +132,7 @@ const RegisterPage = (props) => {
                                     >
                                         Services
                                     </a>
-                                </li>
+                                </li> */}
                                 <li>
                                     <a
                                         href="_#"
@@ -153,25 +154,25 @@ const RegisterPage = (props) => {
                                     </Link>
                                 </Boop>
                                 <div>
-                                    <Link
+                                    {/* <Link
                                         className="m-2 border w-24 border-black rounded-lg text-center bg-blue-200 p-2"
                                         to={"/TestConfirmPage"}
                                     >
                                         Go Back To Test Page
-                                    </Link>
+                                    </Link> */}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </nav>
                 <div>
-                    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+                    <div className="h-auto bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
                         <div className="relative py-3 sm:max-w-xl sm:mx-auto mt-32">
                             <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-                            <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                                <div className="max-w-md mx-auto">
+                            <div className="relative px-4 py- bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                                <div className="max-w-md mx-auto" style={{height:"550px"}}>
                                     <div>
-                                        <h1 className="mb-5 text-4xl font-extrabold">
+                                        <h1 className="text-3xl font-extrabold -mt-11">
                                             Register
                                         </h1>
                                     </div>
@@ -210,8 +211,8 @@ const RegisterPage = (props) => {
                                             )}
                                         </div>
                                         <div className="divide-y divide-gray-200">
-                                            <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                                <div className="relative">
+                                            <div className="py-8 text-base leading-6 space-y-2 text-gray-700 sm:text-lg sm:leading-7">
+                                                <div className="relative" style={{}}>
                                                     <input
                                                         // autoComplete="off"
                                                         id="firstName"
@@ -336,7 +337,7 @@ const RegisterPage = (props) => {
                                                         rotation={"5"}
                                                         timing={"200"}
                                                     >
-                                                        <button className="m-4 border shadow-lg p-4 bg-green-500 hover:bg-green-900 text-xl font-extrabold text-white rounded-xl">
+                                                        <button className="m-1 border shadow-lg p-4 bg-green-500 hover:bg-green-900 text-sm font-extrabold text-white rounded-xl">
                                                             Register
                                                         </button>
                                                     </Boop>

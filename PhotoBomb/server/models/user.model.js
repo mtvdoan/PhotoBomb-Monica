@@ -35,40 +35,45 @@ const UserSchema = new mongoose.Schema(
 /*
 ? MongoDB schema provides virtual
 ? short term value
-!Commented this block of code BELOW for the sake of testing.  Otherwise, registering a user will think that password & confirmPass don't match for some reason;
  */
 UserSchema.virtual("confirmPassword")
     .get(() => this._confirmPassword)
     .set((e) => (this._confirmPassword = e));
 
-// pre or post middleware
+//Pre or Post Middleware
 UserSchema.pre("validate", function (next) {
-    if (this.password !== this.confirmPassword) { //This was a but changed it to == to help with generating random users
+    if (this.password !== this.confirmPassword) {
+        
         this.invalidate("confirmPassword", "Passwords must match!!");
     }
-    // otherwise call next middleware
-    // always call next middleware
+    // Otherwise call next middleware
     next();
 });
 
-// check confirm email THIS IS OPTIONAL...
-// UserSchema.virtual('confirmEmail')
-//     .get( () => this._confirmEmail )
-//     .set( e => this._confirmEmail = e);
-// UserSchema.pre('validate', function(next){
-//     if (this.email !== this.confirmEmail) {
-//         this.invalidate('confirmEmail', 'Emails must match💜💜!!')
-//     }
-//     next()
-// })
+/*
+OPTIONAL: EMAIL CONFIRMATION
+
+check confirm email THIS IS OPTIONAL...
+UserSchema.virtual('confirmEmail')
+    .get( () => this._confirmEmail )
+    .set( e => this._confirmEmail = e);
+UserSchema.pre('validate', function(next){
+    if (this.email !== this.confirmEmail) {
+        this.invalidate('confirmEmail', 'Emails must match!!')
+    }
+    next()
+})
+ */
+
+//npm install mongoose bcrypt
 
 // SAVE ENCRYPTED PASSWORD
 UserSchema.pre("save", async function (next) {
-    console.log("userschema.pre")
+    console.log("userschema.pre");
     try {
-        // hash the password, 10 times
+        // HASH PASSWORD 10Xs
         const hashedPassword = await bcrypt.hash(this.password, 10);
-        // update password with hashed password
+        // UPDATE WITH HASHED PASSWORD
         this.password = hashedPassword;
         next();
     } catch (err) {

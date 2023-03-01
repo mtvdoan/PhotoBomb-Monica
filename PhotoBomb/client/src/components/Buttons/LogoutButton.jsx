@@ -5,15 +5,17 @@ import { UserContext } from "../../context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
 import Boop from "../../styles/Boop";
 const LogoutButton = (props) => {
-    const {setUser} = useContext(UserContext);
-
+    const { setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogOut = (e) => {
         e.preventDefault();
-        
         axios
-            .post("http://localhost:8000/api/users/logout",{}, {withCredentials: true})
+            .post(
+                "http://localhost:8000/api/users/logout",
+                {},
+                { withCredentials: true }
+            )
             .then((res) => {
                 setUser(null);
                 console.log(`Logging out!`);

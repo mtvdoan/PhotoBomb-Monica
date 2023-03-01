@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import LogoutButton from "../Buttons/LogoutButton";
-import SearchBar from "../Buttons/SearchBar";
 import React, { useState, useEffect, useContext } from "react";
 import UserListSearch from "../api/UserListSearch";
 import PokemonSearch from "../api/PokemonSearch";
@@ -18,9 +17,6 @@ const TestConfirmPage = (props) => {
     }, []);
     return (
         <>
-            {/* <div>
-                    <BrowsePhotoPage />
-                </div> */}
             <div>
                 <div className="flex text-3xl text-left font-extrabold grid grid-rows-12 content-center flex justify-center">
                     <h2>

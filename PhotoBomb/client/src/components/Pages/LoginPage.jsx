@@ -6,7 +6,6 @@ import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-import SearchBar from "../Buttons/SearchBar";
 
 const LoginPage = (props) => {
     const { setUser } = useContext(UserContext);
@@ -95,7 +94,7 @@ const LoginPage = (props) => {
                             id="navbar-sticky"
                         >
                             <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                                <li>
+                                {/* <li>
                                     <a
                                         href="_#"
                                         class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -103,23 +102,23 @@ const LoginPage = (props) => {
                                     >
                                         Home
                                     </a>
-                                </li>
-                                <li>
+                                </li> */}
+                                {/* <li>
                                     <Link
                                         to={"/browsephotos"}
                                         class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         Browse Photos
                                     </Link>
-                                </li>
-                                <li>
+                                </li> */}
+                                {/* <li>
                                     <a
                                         href="_#"
                                         class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                     >
                                         Services
                                     </a>
-                                </li>
+                                </li> */}
                                 <li>
                                     <a
                                         href="_#"

@@ -7,22 +7,18 @@ import { animated } from "react-spring";
 import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import DeleteUserButton from "../Buttons/DeleteUserButton";
 
 const UpdateUserPage = (props) => {
     const { id } = useParams();
-    const { user, setUser} = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState(user.password);
-    // const [confirmPassword, setConfirmPassword] = useState(user.confirmPassword);
     const [createdAt] = useState(Date());
     const [updatedAt] = useState(Date());
     const [errors, setErrors] = useState("");
-    // const [usersList, setUsersList] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const navigate = useNavigate();
@@ -47,38 +43,21 @@ const UpdateUserPage = (props) => {
                     lastName,
                     username,
                     email,
-                //     // password,
-                //     // confirmPassword,
-                //     // createdAt,
-                //     // updatedAt,
                 },
                 { withCredentials: true }
             )
             .then((res) => {
                 console.log("updated user-res", res);
-                // setUser({
-
-                //     username: res.user.username,
-                //     firstName: res.user.firstName,
-                //     lastName: res.user.lastName,
-                //     email: res.user.email,
-                // })
-                alert("User updated successfully!")
-                navigate("/users")
+                alert("User updated successfully!");
+                navigate("/users");
             })
             .catch((err) => {
                 console.log("WHATIS ERR", err);
                 setErrors(err.response.data.error.errors);
                 console.log("WHATIS ERR", errors);
-
             });
     };
-    // useEffect(() => {
-    //     if (isSubmitted === true) {
-    //         alert("User has been updated.");
-    //         navigate("/users");
-    //     }
-    // }, [isSubmitted]);
+
     return (
         <>
             <div>
@@ -105,7 +84,7 @@ const UpdateUserPage = (props) => {
                             id="navbar-sticky"
                         >
                             <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
+                                <li>
                                     <a
                                         href="_#"
                                         class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"

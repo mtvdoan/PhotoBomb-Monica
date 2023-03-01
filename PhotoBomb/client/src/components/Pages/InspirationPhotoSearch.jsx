@@ -2,13 +2,12 @@
 //I'll probably use this to search photos.
 
 import React, { useState, useEffect, useContext } from "react";
-import {UserContext} from "../../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 import Boop from "../../styles/Boop";
 import LogoutButton from "../Buttons/LogoutButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 
 const PhotoSearch = (props) => {
     const { user } = useContext(UserContext);
@@ -84,9 +83,10 @@ const PhotoSearch = (props) => {
                                 <a
                                     href="_#"
                                     class=" cursor-grab block py-2 text-3xl pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                    aria-current="page"
                                 >
-                                    Home
+                                    <div className="m-2 whitespace-nowrap border p-2 m-auto bg-green-500 rounded-lg shadow-lg text-white">
+                                        @{user.username}
+                                    </div>
                                 </a>
                             </li>
 
@@ -121,12 +121,12 @@ const PhotoSearch = (props) => {
                             >
                                 Update User
                             </Link>
-                            <Link
+                            {/* <Link
                                 className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"
                                 to={"/TestConfirmPage"}
                             >
                                 Go Back To Test Page
-                            </Link>
+                            </Link> */}
                         </div>
 
                         <LogoutButton />

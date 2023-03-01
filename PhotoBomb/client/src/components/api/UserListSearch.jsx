@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from '../../context/UserContext';
-
+import { UserContext } from "../../context/UserContext";
 import Boop from "../../styles/Boop";
 
 const UserListSearch = (props) => {
@@ -44,17 +43,23 @@ const UserListSearch = (props) => {
                 onChange={handleQueryChange}
                 placeholder="Search users by first name, last name, or email"
             />
-            <ul className="overflow-y-scroll w-auto  h-96">
+            <ul className="overflow-y-scroll w-auto h-72">
                 {filteredUsers.length > 0
                     ? filteredUsers.map((user) => (
-                          <div className="hover:cursor-pointer hover:text-blue-900" key={user.id}>
+                          <div
+                              className="hover:cursor-pointer hover:text-blue-900"
+                              key={user.id}
+                          >
                               <Boop
                                   className="flex flex-col"
                                   rotation={"5"}
                                   timing={"200"}
                               >
-                                  <Link to={`/users/${user._id}`}>
-                                      <li className=" flex text-blue-600 cursor-pointer">
+                                  <Link
+                                      className="hover:underline"
+                                      to={`/users/${user._id}`}
+                                  >
+                                      <li className=" flex hover:underline text-blue-600 cursor-pointer">
                                           <div className="text-2xl font-extrabold tracking-tightest">
                                               {user.username}
                                           </div>
@@ -64,17 +69,19 @@ const UserListSearch = (props) => {
                           </div>
                       ))
                     : users.map((user) => (
-                          <div className="cursor-pointer hover:text-blue-900" key={user.id}>
-                              <Boop
-                                  className=""
-                                  rotation={"5"}
-                                  timing={"200"}
-                              >
+                          <div
+                              className="cursor-pointer hover:text-blue-900"
+                              key={user.id}
+                          >
+                              <Boop className="" rotation={"5"} timing={"200"}>
                                   <Link
                                       className="cursor-pointer hover:text-blue-900"
                                       to={`/users/${user._id}`}
                                   >
-                                      <li className=" m-2 flex text-blue-500" key={user.id}>
+                                      <li
+                                          className=" m-2 flex text-blue-500"
+                                          key={user.id}
+                                      >
                                           <div className="hover:text-blue-900 cursor-pointer text-2xl font-extrabold tracking-tightest">
                                               {user.username}{" "}
                                           </div>

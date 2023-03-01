@@ -25,6 +25,7 @@ module.exports = {
                 })
             );
     },
+
     register: async (req, res) => {
         try {
             // check to make sure email is unique
@@ -32,16 +33,19 @@ module.exports = {
             if (checkEmail) {
                 res.status(400).json({
                     errors: {
-                        email: { message: "Email needs to be unique. 📸" },
+                        email: {
+                            message:
+                                "Appears to be already in use...emails needs to be unique. 📸",
+                        },
                     },
                 });
-                // check other inputs
+                //Check other inputs
             } else {
-                // create schema using form data
+                // Create schema using form data.
                 const data = new User(req.body);
-                // save schema
+                // Save Schema
                 const user = await data.save();
-                // use schema data to create payload
+                // Use schema data to create payload
                 const payload = {
                     _id: user._id,
                     username: user.username,
@@ -49,7 +53,7 @@ module.exports = {
                     firstName: user.firstName,
                     lastName: user.lastName,
                 };
-                // create a token
+                //Create a token
                 const token = jwt.sign(
                     { id: user._id },
                     process.env.SECRET_KEY
@@ -65,6 +69,7 @@ module.exports = {
             res.status(400).json(err);
         }
     },
+
     login: async (req, res) => {
         const user = await User.findOne({ email: req.body.email });
         console.log("logging in:" + user);
@@ -104,10 +109,11 @@ module.exports = {
             }
         } catch (err) {
             res.status(400).json({
-                errors: "oops something when wrong in login",
+                errors: "Oops something when wrong in login",
             });
         }
     },
+
     logout: (req, res) => {
         console.log(`Logging out!`);
         res.clearCookie("userToken").json({
@@ -117,24 +123,20 @@ module.exports = {
     },
 
     updateUser: (req, res) => {
-        console.log("updateUserreq:",req);
-
-        console.log("updateUserres:",res);
-        User.findByIdAndUpdate(req.params.id , req.body, { new: true, runValidators: true })
+        User.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true,
+        })
             .then((e) => {
                 res.json(e);
             })
-             .catch((err) =>
+            .catch((err) =>
                 res.status(400).json({
                     message: "Something went wrong while updating.",
                     error: err,
                 })
             );
-            
-            
     },
-
-
 
     getLogged: async (req, res) => {
         try {

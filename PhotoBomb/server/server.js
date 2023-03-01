@@ -1,29 +1,29 @@
-// read enviroment variables
+//Read Environment Variables
 require("dotenv").config();
 
-// express: js framework - interface to Node Server
+// Express: js framework - interface to Node Server
 const express = require("express");
 const app = express();
 
-// cors cross-origin requests
+// Cors Cross-Origin Request
 const cors = require("cors");
 
-// middleware for cookies
+// Middleware for Cookies
 const cookieParser = require("cookie-parser");
 const PORT = 8000;
 
+//Middleware for Node.js and Express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
 
-// connect to mongooese and routes
+// Connect to Mongoose and Routes
 require("./config/mongoose.config");
 require("./routes/users.routes")(app);
-// require('./routes/objs.routes')(app)
 
-// app listen to port
+//App Listening to PORT
 app.listen(PORT, () => console.log(`Party on port: ${PORT}`));
 
 // LOGIN REG INSTALL
-// npm i bcrypt dotenv cookie-parser jsonwebtoken
+// npm install bcrypt dotenv cookie-parser jsonwebtoken
