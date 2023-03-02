@@ -29,10 +29,10 @@ const LogoutButton = (props) => {
         <>
             <div>
                 <div className="flex md:order-2">
-                    <Boop rotation={"5"} timing={"200"}>
-                        <div className="flex bg-red-700 hover:bg-red-900 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
-                            <div className="mr-2 text-white text-lg">
-                                <Link onClick={handleLogOut} to={"/login"}>
+                    <Boop rotation={"10"} timing={"200"}>
+                        <div className="flex bg-red-700 hover:bg-red-900 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap">
+                            <div className="mr-2 hover:text-white text-white text-lg">
+                                <Link className="text-white hover:text-white font-extrabold hover:bg-red-800" onClick={handleLogOut} to={"/login"}>
                                     Logout
                                 </Link>
                             </div>

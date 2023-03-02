@@ -1,0 +1,31 @@
+.loginBackgroundImage {
+    background: url("./styles/images/loginBackground.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.allUsersBackground {
+    background: url("./styles/images/allUsersBackground.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.registerUserBackgroundImage {
+    background: url("./styles/images/loginBackground.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.inspirationalBackgroundImage {
+    background: url("./styles/images/InspirationalBackground.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

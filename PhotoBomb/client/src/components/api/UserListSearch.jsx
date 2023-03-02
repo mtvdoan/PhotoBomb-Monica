@@ -43,7 +43,7 @@ const UserListSearch = (props) => {
                 onChange={handleQueryChange}
                 placeholder="Search users by first name, last name, or email"
             />
-            <ul className="overflow-y-scroll w-auto h-72">
+            <ul className="overflow-y-scroll w-auto h-96">
                 {filteredUsers.length > 0
                     ? filteredUsers.map((user) => (
                           <div

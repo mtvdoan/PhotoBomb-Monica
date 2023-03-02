@@ -6,10 +6,11 @@ import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
-
+import loginBackground from "../../styles/images/loginBackground.jpg";
+import CreatorsModal from "./CreatorsModal";
 const LoginPage = (props) => {
     const { setUser } = useContext(UserContext);
-
+    const [showModal, setShowModal] = useState(false);
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -60,9 +61,9 @@ const LoginPage = (props) => {
 
     return (
         <>
-            <div>
-                <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-                    <div class="container flex items-center justify-center mx-auto">
+            <div className="loginBackgroundImage">
+                <nav className=" grid grid-cols-2 content-center bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+                    <div className="container flex items-center justify-center mx-auto">
                         <img
                             src={favicon}
                             className="h-12 w-12 m-1"
@@ -78,17 +79,6 @@ const LoginPage = (props) => {
                                 PhotoBomb!
                             </span>
                         </Boop>
-                        <div className="flex md:order-2">
-                            <Boop rotation={"5"} timing={"200"}>
-                                <Link
-                                    to={"/register"}
-                                    type="button"
-                                    className="text-white whitespace-nowrap bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                >
-                                    Register Here
-                                </Link>
-                            </Boop>
-                        </div>
                         <div
                             class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
                             id="navbar-sticky"
@@ -119,23 +109,29 @@ const LoginPage = (props) => {
                                         Services
                                     </a>
                                 </li> */}
-                                <li>
-                                    <a
-                                        href="_#"
-                                        class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                    >
-                                        Creators
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </div>
+                    <div className="flex flex-col items-center justify-center">
+                        <button
+                            className="hover:animate-bounce px-4 py-2 font-extrabold text-purple-100 bg-purple-600 rounded-md"
+                            type="button"
+                            onClick={() => {
+                                setShowModal(true);
+                            }}
+                        >
+                            Creators
+                        </button>
+                        {showModal && (
+                            <CreatorsModal setOpenModal={setShowModal} />
+                        )}
+                    </div>
                 </nav>
-                <div>
-                    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+                <div className="grid grid-cols-2 content-center">
+                    <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
                         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-                            <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-                            <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                            <div className="absolute inset-0 bg-gradient-to-r from-amber-400 to-amber-900 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+                            <div className="relative px-10 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
                                 <div className="max-w-md mx-auto">
                                     <div>
                                         <h1 className="text-4xl font-extrabold">
@@ -197,7 +193,7 @@ const LoginPage = (props) => {
                                                     >
                                                         <button
                                                             type="submit"
-                                                            className=" cursor-pointer bg-blue-500 text-white rounded-md px-2 py-1"
+                                                            className=" shadow-xl cursor-pointer bg-orange-700 hover:bg-orange-900 font-extrabold text-white rounded-md px-2 py-1"
                                                         >
                                                             Login
                                                         </button>
@@ -208,6 +204,25 @@ const LoginPage = (props) => {
                                     </form>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div className="mt-72 -ml-32">
+                        <mark class="mb-2 rounded-lg shadow-xl bg-slate-500 p-2 text-4xl font-extrabold leading-none tracking-tight text-white md:text-5xl lg:text-6xl">
+                            Welcome to PhotoBomb! 📷 💣
+                        </mark>
+                        <p class="mb-6 bg-yellow-400 w-fit rounded-xl shadow xltext-lg text-white font-extrabold sm:px-5 mt-4">
+                            Free storage and organization for all your memories.
+                        </p>
+                        <div className="flex md:order-2">
+                            <Boop rotation={"5"} timing={"200"}>
+                                <Link
+                                    to={"/register"}
+                                    type="button"
+                                    className="shadow-xl text-white whitespace-nowrap bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none hover:text-white focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                >
+                                    Register Here
+                                </Link>
+                            </Boop>
                         </div>
                     </div>
                 </div>

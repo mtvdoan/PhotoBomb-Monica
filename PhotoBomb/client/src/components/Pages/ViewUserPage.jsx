@@ -9,11 +9,11 @@ import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import favicon from "../../styles/images/favicon.png";
 import bomb from "../../styles/images/bomb.png";
 import EditUserButton from "../Buttons/EditUserButton";
-
+import CreatorsModal from "./CreatorsModal";
 const ViewUserPage = (props) => {
     const { user } = useContext(UserContext);
     const { id } = useParams();
-
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
     console.log("id", id);
     const [usersList, setUsersList] = useState([]);
@@ -87,27 +87,38 @@ const ViewUserPage = (props) => {
                                             {/* Services */}
                                         </a>
                                     </li>
-                                    <li>
-                                        <a
-                                            href="_#"
-                                            class="block text-3xl py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                        >
-                                            Creators
-                                        </a>
-                                    </li>
                                 </ul>
+                                <div className="mr-4 flex flex-col items-center justify-center">
+                                    <button
+                                        className="hover:animate-bounce px-4 py-2 font-extrabold text-purple-100 bg-purple-600 rounded-md"
+                                        type="button"
+                                        onClick={() => {
+                                            setShowModal(true);
+                                        }}
+                                    >
+                                        Creators
+                                    </button>
+                                    {showModal && (
+                                        <CreatorsModal
+                                            setOpenModal={setShowModal}
+                                        />
+                                    )}
+                                </div>
                                 <div>
                                     <span className="flex">
                                         <Link
                                             to={`/users/update/${user.id}`}
-                                            className="m-2 whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white"
+                                            className="font-extrabold m-2 hover:text-white whitespace-nowrap border p-2 m-auto bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg hover:text-whites text-white"
                                         >
                                             Update User
                                         </Link>
                                         <Boop rotation={"5"} timing={"200"}>
                                             <div className="flex bg-blue-500 hover:bg-blue-600 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
                                                 <div className="cursor-pointer mr-2 text-white text-lg shadow-lg">
-                                                    <Link to={"/users"}>
+                                                    <Link
+                                                        className="font-extrabold text-xl text-white"
+                                                        to={"/users"}
+                                                    >
                                                         Go Back
                                                     </Link>
                                                 </div>

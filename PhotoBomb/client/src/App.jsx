@@ -1,4 +1,6 @@
 import "./App.css";
+import 'bulma/css/bulma.min.css';
+
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./components/Pages/LoginPage";
@@ -15,8 +17,7 @@ import SearchBar from "./components/Buttons/SearchBar";
 import UserListSearch from "./components/api/UserListSearch";
 import InspirationPhotoSearch from "./components/Pages/InspirationPhotoSearch";
 import LogoutButton from "./components/Buttons/LogoutButton";
-import PhotoDetails from "./components/Pages/PhotoDetails";
-import Test from "./components/test";
+import CreatorsModal from "./components/Pages/CreatorsModal";
 
 function App() {
     const [authorized, setAuthorized] = useState("");
@@ -27,8 +28,6 @@ function App() {
                 <UserProvider>
                     <Routes>
                         <Route index element={<HomePage />} />
-                       
-                        
                         <Route
                             path="/register"
                             element={
@@ -124,12 +123,12 @@ function App() {
                                 />
                             }
                         />
-                        <Route path="/photoDetail" element={<PhotoDetails/>}/>
+                        {/* <Route
+                            path="/creators"
+                            element={<CreatorsModal setAuthorized={setAuthorized}/>}
+                        /> */}
                     </Routes>
                 </UserProvider>
-
-               <Test/>
-
             </BrowserRouter>
         </>
     );
