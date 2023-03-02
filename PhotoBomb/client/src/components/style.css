@@ -1,0 +1,156 @@
+.App {
+    text-align: center;
+  
+  }
+  
+  
+  
+  
+  /* body{
+  
+  background-color: rgb(38, 36, 36);
+  
+  }
+  
+  .mainDiv{
+  
+  background-color: #fff;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-bottom: 720px;
+  } */
+  
+  
+  html {
+    margin-top: 160px;
+    background-image:linear-gradient(#7c5a5a, #aaa, #ab94a2);
+    height:100%;
+  }
+  
+  img {
+    border:solid 2px;
+    border-bottom-color:#ffe;
+    border-left-color:#eed;
+    border-right-color:#eed;
+    border-top-color:#ccb;
+    max-height:250%;
+    max-width:290px;
+    margin-top: -35px;
+    margin-left: -10px
+  }
+  
+  .frame {
+    /* background-color:#ddc; */
+    background-color: #fff;
+    border:solid 5vmin #eeeeee;
+    border-bottom-color:#D2D0C7;
+    border-left-color:#D2D0C7;
+    border-radius:2px;
+    border-right-color:#D2D0C7;
+    border-top-color:#D2D0C7;
+    box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+  /* 
+    background: rgb(67,202,254); */
+    /* background: linear-gradient(164deg, rgba(67,202,254,1) 0%, rgb(125, 105, 170) 100%); */
+    background-image: linear-gradient( 135deg, #74b8af 10%, #d96daa 100%);
+  
+    box-sizing:border-box;
+    display:inline-block;
+    margin:10vh 10vw;
+    height:40vh;
+    padding:8vmin;
+    position:relative;
+    text-align:center;
+   /* border-image: url(https://www.psdgraphics.com/file/wood-texture.jpg);
+   border-image-width: 50%; */
+   max-width: 500px;
+   
+  }
+  
+    ::before {
+      border-radius:2px;
+      bottom:-2vmin;
+      box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+     
+      content:"";
+      left:-2vmin;
+      position:absolute;
+      right:-2vmin;
+      top:-2vmin;
+    }
+  
+    ::after {
+      border-radius:2px;
+      bottom:-2.5vmin;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+      content:"";
+      left:-2.5vmin;
+      position:absolute;
+      right:-2.5vmin;
+      top:-2.5vmin;
+   /* border-color: aqua; */
+   border-width: 100px;
+   /* border-left-color: red;
+   border-left-width: 600%; */
+  
+    }
+  
+  /* ==================================================== */
+    /* .gg-trash {
+      box-sizing: border-box;
+      position: relative;
+      display: block;
+      transform: scale(var(--ggs,1));
+      width: 10px;
+      height: 12px;
+      border: 2px solid transparent;
+      box-shadow:
+      0 0 0 2px,
+      inset -2px 0 0,
+      inset 2px 0 0;
+      border-bottom-left-radius: 1px;
+      border-bottom-right-radius: 1px;
+      margin-top: 4px
+     }
+     
+     .gg-trash::after,
+     .gg-trash::before {
+      content: "";
+      display: block;
+      box-sizing: border-box;
+      position: absolute
+     }
+     
+     .gg-trash::after {
+      background:black;
+      border-radius: 3px;
+      width: 16px;
+      height: 2px;
+      top: -4px;
+      left: -5px
+     }
+     
+     .gg-trash::before {
+      width: 10px;
+      height: 4px;
+      border: 2px solid;
+      border-bottom: transparent;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      top: -7px;
+      left: -2px
+     }  */
+  
+  
+  
+     .fontawesomeicon::before {
+      display: flex;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+   }
+  
+  .Trash::before {
+     font: var(--fa-font-solid);
+      content: ' \f1f8';
+   }

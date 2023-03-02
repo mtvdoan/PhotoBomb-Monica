@@ -15,6 +15,8 @@ import SearchBar from "./components/Buttons/SearchBar";
 import UserListSearch from "./components/api/UserListSearch";
 import InspirationPhotoSearch from "./components/Pages/InspirationPhotoSearch";
 import LogoutButton from "./components/Buttons/LogoutButton";
+import PhotoDetails from "./components/Pages/PhotoDetails";
+import Test from "./components/test";
 
 function App() {
     const [authorized, setAuthorized] = useState("");
@@ -25,6 +27,8 @@ function App() {
                 <UserProvider>
                     <Routes>
                         <Route index element={<HomePage />} />
+                       
+                        
                         <Route
                             path="/register"
                             element={
@@ -120,8 +124,12 @@ function App() {
                                 />
                             }
                         />
+                        <Route path="/photoDetail" element={<PhotoDetails/>}/>
                     </Routes>
                 </UserProvider>
+
+               <Test/>
+
             </BrowserRouter>
         </>
     );
