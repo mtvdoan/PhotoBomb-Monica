@@ -123,6 +123,30 @@ function App() {
                                 />
                             }
                         />
+
+{/* 
+Need to add Chris & Cortillius portion of project:
+
+                        <Route
+                            path="/CHRIS"
+                            element={
+                                <ChrisPageOne
+                                    setAuthorized={setAuthorized}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/CORTILLIUS"
+                            element={
+                                <CortilliusPageOne
+                                    setAuthorized={setAuthorized}
+                                />
+                            }
+                        /> 
+
+
+ */}
+
                         {/* <Route
                             path="/creators"
                             element={<CreatorsModal setAuthorized={setAuthorized}/>}

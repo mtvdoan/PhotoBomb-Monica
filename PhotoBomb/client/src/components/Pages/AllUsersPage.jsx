@@ -12,7 +12,6 @@ import UserListSearch from "../api/UserListSearch";
 import CreatorsModal from "./CreatorsModal";
 const AllUsersPage = (props) => {
        const [showModal, setShowModal] = useState(false);
-
     const { user } = useContext(UserContext);
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
