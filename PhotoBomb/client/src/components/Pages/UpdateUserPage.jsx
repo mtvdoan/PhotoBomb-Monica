@@ -142,7 +142,10 @@ const UpdateUserPage = (props) => {
                                         <Boop rotation={"5"} timing={"200"}>
                                             <div className="flex bg-blue-500 hover:bg-blue-600 text-white text-lg m-4 p-2 rounded-lg shadow-lg self-center tracking-tighter font-extrabold font-semibold whitespace-nowrap dark:text-white">
                                                 <div className="cursor-pointer mr-2 hover:text-white font-extrabold text-white text-lg shadow-lg">
-                                                    <Link className="text-xl text-white" to={"/users"}>
+                                                    <Link
+                                                        className="text-xl text-white"
+                                                        to={"/users"}
+                                                    >
                                                         Go Back
                                                     </Link>
                                                 </div>
@@ -151,6 +154,12 @@ const UpdateUserPage = (props) => {
                                     </span>
                                 </div>
                             </div>
+                            <Link
+                                to={`/photoalbums/`}
+                                className="hover:animate-bounce m-2 hover:text-white font-extrabold whitespace-nowrap border p-2 bg-blue-400 hover:bg-blue-700 rounded-lg shadow-lg text-white"
+                            >
+                                Photo Albums
+                            </Link>
                             <LogoutButton />
                         </div>
                     </div>

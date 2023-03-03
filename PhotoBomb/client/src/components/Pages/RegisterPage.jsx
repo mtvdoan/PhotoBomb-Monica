@@ -86,7 +86,7 @@ const RegisterPage = (props) => {
     };
     return (
         <>
-            <div className="registerUserBackgroundImage">
+            <div className="registerUserBackgroundImage h-auto">
                 <nav className="bg-white px-2 sm:px-4 py-2.5 fixed w-screen z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
                     <div className=" whitespace-nowrap flex items-center justify-center mx-auto">
                         <img
@@ -199,7 +199,6 @@ const RegisterPage = (props) => {
                                                     {errors.firstName.message}
                                                 </p>
                                             )}
-
                                             {errors.lastName && (
                                                 <p className="accent">
                                                     {errors.lastName.message}
@@ -233,7 +232,6 @@ const RegisterPage = (props) => {
                                                     style={{}}
                                                 >
                                                     <input
-                                                        // autoComplete="off"
                                                         id="firstName"
                                                         name="firstName"
                                                         type="text"
@@ -253,7 +251,6 @@ const RegisterPage = (props) => {
                                                 </div>
                                                 <div className="relative">
                                                     <input
-                                                        // autoComplete="off"
                                                         id="lastName"
                                                         name="lastName"
                                                         type="text"
@@ -261,8 +258,6 @@ const RegisterPage = (props) => {
                                                             handleRegInputs
                                                         }
                                                         className="m-2 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
-                                                        // value={lastName}
-                                                        // placeholder={randomLastName}
                                                     />
                                                     <label
                                                         htmlFor="lastName"
@@ -273,7 +268,6 @@ const RegisterPage = (props) => {
                                                 </div>
                                                 <div className="relative">
                                                     <input
-                                                        // autoComplete="off"
                                                         id="username"
                                                         name="username"
                                                         type="text"

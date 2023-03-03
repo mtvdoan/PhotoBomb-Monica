@@ -21,6 +21,7 @@ app.use(cookieParser());
 // Connect to Mongoose and Routes
 require("./config/mongoose.config");
 require("./routes/users.routes")(app);
+require("./routes/photoDetails.routes")(app);
 
 //App Listening to PORT
 app.listen(PORT, () => console.log(`Party on port: ${PORT}`));

@@ -13,14 +13,8 @@ export default function CreatorsModal({ setOpenModal }) {
                         <div className="mt-3 sm:flex">
                             <div className="mt-2 text-center sm:ml-4 sm:text-left">
                                 <h4 className="text-lg font-medium text-gray-800">
-                                    Meet the Creators!
+                                    Meet the Creator
                                 </h4>
-                                <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
-                                    Cortillius Mckinney
-                                </p>
-                                <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
-                                    Chris Savasta
-                                </p>
                                 <p className="mt-2 text-[15px] leading-relaxed text-gray-500">
                                     Monica Doan
                                 </p>

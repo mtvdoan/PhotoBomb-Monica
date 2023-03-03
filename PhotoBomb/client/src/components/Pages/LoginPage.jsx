@@ -61,7 +61,7 @@ const LoginPage = (props) => {
 
     return (
         <>
-            <div className="loginBackgroundImage">
+            <div className="loginBackgroundImage" style={{height:"auto"}}>
                 <nav className=" grid grid-cols-2 content-center bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
                     <div className="container flex items-center justify-center mx-auto">
                         <img

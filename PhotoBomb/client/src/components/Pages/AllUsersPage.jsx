@@ -10,8 +10,9 @@ import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import UserListSearch from "../api/UserListSearch";
 import CreatorsModal from "./CreatorsModal";
+import PhotoAlbumbs from "./PhotoAlbums";
 const AllUsersPage = (props) => {
-       const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const { user } = useContext(UserContext);
     const [usersList, setUsersList] = useState([]);
     const [errors, setErrors] = useState("");
@@ -96,20 +97,28 @@ const AllUsersPage = (props) => {
                                     </Boop>
                                 </li>
                             </ul>
-                    <div className="mr-4 flex flex-col items-center justify-center">
-                        <button
-                            className="hover:animate-ping px-4 py-2 font-extrabold text-purple-100 bg-purple-600 rounded-md"
-                            type="button"
-                            onClick={() => {
-                                setShowModal(true);
-                            }}
-                        >
-                            Creators
-                        </button>
-                        {showModal && (
-                            <CreatorsModal setOpenModal={setShowModal} />
-                        )}
-                    </div>
+                            <div className="mr-4 flex flex-col items-center justify-center">
+                                <button
+                                    className="hover:animate-ping px-4 py-2 font-extrabold text-purple-100 bg-purple-600 rounded-md"
+                                    type="button"
+                                    onClick={() => {
+                                        setShowModal(true);
+                                    }}
+                                >
+                                    Creators
+                                </button>
+                                {showModal && (
+                                    <CreatorsModal
+                                        setOpenModal={setShowModal}
+                                    />
+                                )}
+                            </div>
+                            <Link
+                                to={`/photoalbums/`}
+                                className="hover:animate-bounce m-2 hover:text-white font-extrabold whitespace-nowrap border p-2 bg-blue-400 hover:bg-blue-700 rounded-lg shadow-lg text-white"
+                            >
+                                Photo Albums
+                            </Link>
                             <Link
                                 to={`/users/update/${user.id}`}
                                 className="hover:animate-bounce m-2 hover:text-white font-extrabold whitespace-nowrap border p-2 bg-orange-400 hover:bg-orange-700 rounded-lg shadow-lg text-white"

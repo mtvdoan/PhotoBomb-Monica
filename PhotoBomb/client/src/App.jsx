@@ -1,5 +1,5 @@
 import "./App.css";
-import 'bulma/css/bulma.min.css';
+import "bulma/css/bulma.min.css";
 
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -18,7 +18,10 @@ import UserListSearch from "./components/api/UserListSearch";
 import InspirationPhotoSearch from "./components/Pages/InspirationPhotoSearch";
 import LogoutButton from "./components/Buttons/LogoutButton";
 import CreatorsModal from "./components/Pages/CreatorsModal";
-
+import PhotoAlbums from "./components/Pages/PhotoAlbums";
+import PhotoDetails from "./components/Pages/PhotoDetails";
+import CreatePhotoDetails from "./components/Pages/CreatePhotoDetails";
+import UpdatePhotoDetails from "./components/Pages/UpdatePhotoDetails";
 function App() {
     const [authorized, setAuthorized] = useState("");
 
@@ -123,8 +126,35 @@ function App() {
                                 />
                             }
                         />
-
-{/* 
+                        <Route
+                            path="/photoAlbums/"
+                            element={
+                                <PhotoAlbums setAuthorized={setAuthorized} />
+                            }
+                        />
+                        <Route
+                            path="/photoDetails/:id"
+                            element={
+                                <PhotoDetails setAuthorized={setAuthorized} />
+                            }
+                        />
+                        <Route
+                            path="/createPhotoDetails/"
+                            element={
+                                <CreatePhotoDetails
+                                    setAuthorized={setAuthorized}
+                                />
+                            }
+                        />
+               <Route
+                            path="/photoDetails/update/:id"
+                            element={
+                                <UpdatePhotoDetails
+                                    setAuthorized={setAuthorized}
+                                />
+                            }
+                        />
+                        {/* 
 Need to add Chris & Cortillius portion of project:
 
                         <Route
@@ -159,4 +189,3 @@ Need to add Chris & Cortillius portion of project:
 }
 
 export default App;
-

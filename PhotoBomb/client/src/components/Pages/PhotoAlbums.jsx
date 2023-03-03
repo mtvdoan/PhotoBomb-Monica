@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import Boop from "../../styles/Boop";
 import { animated } from "react-spring";
@@ -10,62 +10,33 @@ import bomb from "../../styles/images/bomb.png";
 import LoggedInAsButton from "../Buttons/LoggedInAsButton";
 import UserListSearch from "../api/UserListSearch";
 import CreatorsModal from "./CreatorsModal";
-const PhotoDetails = (props) => {
-  const {id} = useParams();
+const PhotoAlbums = (props) => {
     const [showModal, setShowModal] = useState(false);
     const { user } = useContext(UserContext);
     const [usersList, setUsersList] = useState([]);
-    const [errors, setErrors] = useState("");
-    const navigate = useNavigate();
     const [photoDetails, setPhotoDetails] = useState("");
+    const [errors, setErrors] = useState("");
     const [photoDetailsList, setPhotoDetailsList] = useState([]);
     const [photoDetailsCreator, setPhotoDetailsCreator] = useState("");
     const [photoDetailsLabel, setPhotoDetailsLabel] = useState("");
     const [photoDetailsDescription, setPhotoDetailsDescription] = useState("");
     const [photoDetailsDateTaken, setPhotoDetailsDateTaken] = useState("");
-        useEffect(() => {
-        axios
-            .get("http://localhost:8000/api/photoDetails/" + id)
-            .then(res => setPhotoDetails(res.data))
-            .catch(err => console.log(err))
-    }, [])
-    // useEffect(() => {
-    //     axios
-    //         .get("http://localhost:8000/api/photoDetails/")
-    //         .then((res) => {
-    //             console.log("RES!", res.data);
-    //             console.log(photoDetails);
-    //             setPhotoDetailsList(res.data);
-    //             console.log("Did I get all the photo details?", res.data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             setErrors(err.response.data.errors);
-    //         });
-    // }, []);
-    // const findOnePhotoDetails = (photoDetailsId) => {
-    //     axios
-    //         .get("http://localhost:8000/api/photoDetails/" + photoDetailsId)
-    //         .then((response) => {
-    //             setPhotoDetails(response.data);
-    //         })
-    //         .catch((err) => console.log(err));
-    // };
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     axios
-    //         .get("http://localhost:8000/api/users/")
-    //         .then((res) => {
-    //             console.log("RES!", res.data);
-    //             console.log(user);
-    //             setUsersList(res.data);
-    //             console.log(res.data.id);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             setErrors(err.response.data.errors);
-    //         });
-    // }, []);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/photoDetails/")
+            .then((response) =>
+                setPhotoDetailsList(
+                    response.data,
+                    console.log("All photo details", response.data)
+                )
+            )
+            .catch((err) => {
+                console.log(err);
+                setErrors(err.response.data.errors);
+            });
+    }, []);
 
     return (
         <>
@@ -165,6 +136,12 @@ const PhotoDetails = (props) => {
                                     </div>
                                 </div>
                             </Boop>
+                            {/* <Link
+                                className="m-2 border border-black rounded-lg text-center bg-blue-200 p-2"
+                                to={"/TestConfirmPage"}
+                            >
+                                Go Back To Test Page
+                            </Link> */}
                             <LogoutButton className="text-white hover:text-white" />
                         </div>
                     </div>
@@ -172,83 +149,82 @@ const PhotoDetails = (props) => {
             </span>
 
             <div className="mt-48">
-                <div>
+                <div className="grid grid-cols-2 content-center ">
                     <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                        Photo{" "}
+                        Your{" "}
                         <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
-                            Details
+                            Albums
                         </span>
                     </h1>
-                </div>
+                    <Link
+                        to={`/createPhotoDetails`}
+                        class="relative w-96 px-6 py-3 font-bold text-black group"
+                    >
+                        <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-3 -translate-y-3 bg-red-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                        <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+                        <span class="relative text-3xl whitespace-nowrap">Create Photo Details</span>
+                    </Link>
 
-                <div
-                    className="py-6 flex flex-col justify-center sm:py-12"
-                    style={{}}
-                >
-                    <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-                        <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-                            <div className="max-w-md mx-auto text-left">
-                                <div>
-                                    <div className="grid grid-flow-row">
-                                        <Boop rotation={"6"} timing={"200"}>
-                                            <div className="">
-                                                <span className="mr-4 text-2xl mt-2 font-bold">
-                                                    Creator:
-                                                </span>
-                                                <span className="text-xl">
-                                                    {
-                                                        photoDetails.photoDetailsCreator
-                                                    }
-                                                </span>
-                                            </div>
-                                        </Boop>
-                                        <Boop rotation={"6"} timing={"200"}>
-                                            <div className="">
-                                                <span className="mr-4 text-2xl mt-2 font-bold">
-                                                    Label:
-                                                </span>
-                                                <span className="text-xl">
-                                                    {
-                                                        photoDetails.photoDetailsLabel
-                                                    }
-                                                </span>
-                                            </div>
-                                        </Boop>
-                                        <Boop rotation={"6"} timing={"200"}>
-                                            <div className="">
-                                                <span className="mr-4 text-2xl mt-2 font-bold">
-                                                    Description:
-                                                </span>
-                                                <span className="text-xl">
-                                                    {
-                                                        photoDetails.photoDetailsDescription
-                                                    }
-                                                </span>
-                                            </div>
-                                        </Boop>
-                                        <Boop rotation={"6"} timing={"200"}>
-                                            <div className="">
-                                                <span className="mr-4 text-2xl mt-2 font-bold">
-                                                    Date Taken:
-                                                </span>
-                                                <span className="text-xl">
-                                                    {photoDetails.photoDetailsDateTaken}
-                                                </span>
-                                            </div>
-                                        </Boop>
-                                    </div>
-                                </div>
-                                <div className="divide-y divide-gray-200">
-                                    <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"></div>
-                                </div>
+                    <section className="mb-6 overflow-hidden text-neutral-700">
+                        <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
+                            <div className="-m-1 flex flex-wrap md:-m-2">
+                                {photoDetailsList.length > 0 &&
+                                    photoDetailsList.map(
+                                        (photoDetails, index) => (
+                                            <>
+                                                <div className="flex w-1/3 flex-wrap">
+                                                    <Boop
+                                                        rotation={"5"}
+                                                        timing={"300"}
+                                                    >
+                                                        <Link
+                                                            to={`/photoDetails/${photoDetails._id}`}
+                                                        >
+                                                            <div className="w-full p-1 md:p-2 mb-6">
+                                                                <span className="grid grid-cols-2 content-center whitespace-nowrap">
+                                                                    <label
+                                                                        htmlFor="gallery1"
+                                                                        className="hover:underline text-extrabold text-2xl tracking-tighter"
+                                                                    >
+                                                                        Lake
+                                                                        Trips
+                                                                    </label>
+                                                                    <Boop
+                                                                        rotation={
+                                                                            "5"
+                                                                        }
+                                                                        timing={
+                                                                            "100"
+                                                                        }
+                                                                    >
+                                                                        <Link
+                                                                            to={`/photoDetails/update/${photoDetails._id}`}
+                                                                            className="hover:animate-bounce m-2 text-xs hover:text-white font-extrabold whitespace-nowrap border p-2 bg-pink-400 hover:bg-pink-700 rounded-lg shadow-lg text-white"
+                                                                        >
+                                                                            Update
+                                                                        </Link>
+                                                                    </Boop>
+                                                                </span>
+                                                                <img
+                                                                    alt="gallery"
+                                                                    name="gallery1"
+                                                                    className="block p-1 h-full w-full rounded-lg object-cover object-center"
+                                                                    src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                                                                />
+                                                            </div>
+                                                        </Link>
+                                                    </Boop>
+                                                </div>
+                                            </>
+                                        )
+                                    )}
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
             </div>
         </>
     );
 };
 
-export default PhotoDetails;
+export default PhotoAlbums;
