@@ -61,7 +61,7 @@ const UpdateUserPage = (props) => {
 
     return (
         <>
-            <div>
+            <div className="updateUserBackground">
                 <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
                     <div className="flex items-center justify-center mx-auto">
                         <img
@@ -164,7 +164,7 @@ const UpdateUserPage = (props) => {
                         </div>
                     </div>
                 </nav>
-                <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+                <div className="min-h-screenpy-6 flex flex-col justify-center sm:py-12">
                     <div className="relative p-4 mt-24 py-3 sm:max-w-xl sm:mx-auto">
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
                         <div className="relative p-4  py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">

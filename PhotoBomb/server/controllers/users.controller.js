@@ -153,7 +153,7 @@ module.exports = {
     },
 
     deleteUser: async (req, res) => {
-        User.findOneAndDelete(req.params.id)
+        User.findByIdAndDelete(req.params.id)
             .then((deletedUser) => res.json({ deletedUser }))
             .catch((err) =>
                 res.status(400).json({

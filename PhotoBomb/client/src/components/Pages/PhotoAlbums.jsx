@@ -149,22 +149,21 @@ const PhotoAlbums = (props) => {
             </span>
 
             <div className="mt-48">
-                <div className="grid grid-cols-2 content-center ">
+                <div className="grid grid-cols-1 content-center ">
+                          <Link
+                        to={`/createPhotoDetails`}
+                        class="relative w-96 px-6 py-3 font-bold text-black group"
+                    >
+                        <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-3 -translate-y-3 bg-red-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                        <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+                        <span class="relative text-xl whitespace-nowrap">Create New Photo Details?</span>
+                    </Link>
                     <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                         Your{" "}
                         <span className="underline underline-offset-3 decoration-8 decoration-blue-400 dark:decoration-blue-600">
                             Albums
                         </span>
                     </h1>
-                    <Link
-                        to={`/createPhotoDetails`}
-                        class="relative w-96 px-6 py-3 font-bold text-black group"
-                    >
-                        <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-3 -translate-y-3 bg-red-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
-                        <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
-                        <span class="relative text-3xl whitespace-nowrap">Create Photo Details</span>
-                    </Link>
-
                     <section className="mb-6 overflow-hidden text-neutral-700">
                         <div className="container mx-auto px-5 py-2 lg:px-32 lg:pt-12">
                             <div className="-m-1 flex flex-wrap md:-m-2">
@@ -172,7 +171,7 @@ const PhotoAlbums = (props) => {
                                     photoDetailsList.map(
                                         (photoDetails, index) => (
                                             <>
-                                                <div className="flex w-1/3 flex-wrap">
+                                                <div className="flex w-1/2 flex-wrap">
                                                     <Boop
                                                         rotation={"5"}
                                                         timing={"300"}
@@ -181,13 +180,12 @@ const PhotoAlbums = (props) => {
                                                             to={`/photoDetails/${photoDetails._id}`}
                                                         >
                                                             <div className="w-full p-1 md:p-2 mb-6">
-                                                                <span className="grid grid-cols-2 content-center whitespace-nowrap">
+                                                                <span className="flex whitespace-nowrap">
                                                                     <label
                                                                         htmlFor="gallery1"
                                                                         className="hover:underline text-extrabold text-2xl tracking-tighter"
                                                                     >
-                                                                        Lake
-                                                                        Trips
+                                                                        {photoDetails.photoDetailsLabel}
                                                                     </label>
                                                                     <Boop
                                                                         rotation={
@@ -208,7 +206,7 @@ const PhotoAlbums = (props) => {
                                                                 <img
                                                                     alt="gallery"
                                                                     name="gallery1"
-                                                                    className="block p-1 h-full w-full rounded-lg object-cover object-center"
+                                                                    className="block p-1 h-full w-full rounded-2xl shadow-lg object-cover object-center"
                                                                     src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
                                                                 />
                                                             </div>

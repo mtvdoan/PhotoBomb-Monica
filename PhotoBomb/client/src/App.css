@@ -38,3 +38,30 @@
     background-size: cover;
     
 }
+
+.photoDetailsBackground {
+    background: url("./styles/images/photoDetailsBackground.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.updateUserBackground {
+    background: url("./styles/images/updateUserBackground.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.userDetailsBackground {
+    background: url("./styles/images/userDetailsBackground.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
